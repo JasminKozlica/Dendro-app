@@ -1,0 +1,20 @@
+<div>
+    <label>Species:
+      <input [(ngModel)]="tree.species">
+    </label>
+    <br>
+    <label>Diameter:
+      <input type="number" [(ngModel)]="tree.diameter">
+    </label>
+    <br>
+    <label>Height:
+      <input type="number" [(ngModel)]="tree.height">
+    </label>
+    <br>
+    <button (click)="calculate()">Calculate Volume</button>
+  
+    <p *ngIf="resultVolume !== null">
+      Volume: {{ resultVolume }}
+    </p>
+  </div>
+  

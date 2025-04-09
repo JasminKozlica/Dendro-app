@@ -40,3 +40,14 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+node_modules/
+dist/
+build/
+.angular/
+.vscode/
+.idea/
+*.log
+*.lockb
+npm-debug.log*
+yarn-error.log*
