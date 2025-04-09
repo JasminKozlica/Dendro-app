@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { Tree } from 'src/app/models/tree.model'; 
+import { Tree } from '@models/tree.model';
 import { CalculationService } from '../../services/calculation.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tree-input',
+  standalone: true,
   templateUrl: './tree-input.component.html',
-  styleUrls: ['./tree-input.component.css']
+  styleUrls: ['./tree-input.component.css'],
+  imports: [CommonModule, FormsModule],
 })
 export class TreeInputComponent {
   tree: Tree = {
