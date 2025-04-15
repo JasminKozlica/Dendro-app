@@ -1,0 +1,45 @@
+<div class="tree-form">
+  <h2>Unos drveta</h2>
+
+  <label>Vrsta drveta:</label>
+  <input list="speciesList" [(ngModel)]="tree.species" placeholder="Unesite ili izaberite vrstu drveta" />
+  <datalist id="speciesList">
+    <option *ngFor="let species of topSpecies" [value]="species.species" [title]="species.description">
+      {{ species.species }}
+    </option>
+    
+  </datalist>
+  
+
+  <label>Promjer (cm):</label>
+  <input type="number" [(ngModel)]="tree.diameter" class="form-control" placeholder="npr. 25" />
+
+  <label>Visina (m):</label>
+  <input type="number" [(ngModel)]="tree.height" class="form-control" placeholder="npr. 10" />
+
+  <label>Formula:</label>
+  <select [(ngModel)]="formula" class="form-control">
+    <option value="smalian">Smalianova</option>
+    <option value="huber">Huberova</option>
+  </select>
+
+  <div class="btn-group">
+    <button (click)="calculate()" class="btn-calc">Izračunaj volumen</button>
+    <button (click)="submitTree()" class="btn-submit">Unesi drvo</button>
+  </div>
+
+  <div *ngIf="loading" class="loading-text">Računanje volumena...</div>
+
+  <div *ngIf="resultVolume !== null && !loading" class="result-box">
+    <strong>Volumen:</strong> {{ resultVolume | number: '1.2-2' }} m³
+  </div>
+</div>
+
+<div class="species-list">
+  <h3>Najzastupljenije vrste drveta (Unsko-sanski kanton)</h3>
+  <ul *ngIf="topSpecies.length > 0">
+    <li *ngFor="let species of topSpecies">
+      <strong>{{ species.species }}</strong>: {{ species.description }}
+    </li>
+  </ul>
+</div>

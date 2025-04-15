@@ -1,0 +1,17 @@
+.navbar {
+    display: flex;
+    gap: 20px;
+    padding:10px 20px;
+    background-color: #2e7d32;
+    color: white;
+}
+
+.navbar a{
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+}
+
+.navbar a.active{
+    border-bottom: 2px solid yellow;
+}
