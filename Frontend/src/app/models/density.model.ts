@@ -1,6 +1,7 @@
-export class ForestDensity {
-    id: number;
-    area: number;
-    treeCount: number;
+export interface ForestDensity {
     species: string;
+    height: number;
+    diameter: number;
+    treeCount: number;
+    locationName: string;
 }

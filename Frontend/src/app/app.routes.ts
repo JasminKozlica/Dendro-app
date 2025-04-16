@@ -4,9 +4,9 @@ import { DensityComponent } from './components/density/density.component';
 import { TreeInputComponent } from './components/tree-input/tree-input.component';
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: 'volume', pathMatch: 'full' },
+  { path: '', redirectTo: 'search', pathMatch: 'full' },
   { path: 'search', component: SearchComponent },
   { path: 'density', component: DensityComponent },
-  { path: 'volume', component: TreeInputComponent },
-
+  { path: 'tree-input', component: TreeInputComponent },
+  { path: '**', redirectTo: 'search' } // fallback za nepoznate rute
 ];

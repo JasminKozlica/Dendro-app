@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Tree } from '@models/tree.model';
 import { CalculationService } from '../../services/calculation.service';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { TreeService } from '@app/services/TreeService(Frontend-Angular)';
+import { TreeService } from 'src/app/services/tree.service';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+console.log('TreeInputComponent loaded from module');
 @Component({
   selector: 'app-tree-input',
-  standalone: true,
+  
   templateUrl: './tree-input.component.html',
   styleUrls: ['./tree-input.component.css'],
-  imports: [FormsModule, CommonModule],
+  imports: [CommonModule, FormsModule]  // ⬅️ dodaj ovo
 })
 export class TreeInputComponent implements OnInit {
   tree: Tree = {
@@ -18,8 +19,6 @@ export class TreeInputComponent implements OnInit {
     diameter: 0,
     height: 0,
   };
-  
-
 
   formula: 'smalian' | 'huber' = 'smalian';
   resultVolume: number | null = null;
@@ -27,20 +26,22 @@ export class TreeInputComponent implements OnInit {
 
   topSpecies: { species: string; description: string }[] = [];
 
-  constructor(private calculationService: CalculationService ,
-              private treeService: TreeService
+  constructor(
+    private calculationService: CalculationService,
+    private treeService: TreeService
   ) {}
 
   ngOnInit(): void {
-    this.treeService.getTopSpecies().subscribe(data => {
+    this.treeService.getTopSpecies().subscribe((data: any) => {
       this.topSpecies = data;
     });
   }
-    submitTree(){
-      this.treeService.addTree(this.tree).subscribe(() => {
-        alert('Drvo je uspjesno uneseno.');
-      });
-    }
+
+  submitTree() {
+    this.treeService.addTree(this.tree).subscribe(() => {
+      alert('Drvo je uspješno uneseno.');
+    });
+  }
 
   calculate() {
     this.resultVolume = null;
@@ -56,5 +57,6 @@ export class TreeInputComponent implements OnInit {
       this.loading = false;
     });
   }
-}
 
+  
+}

@@ -57,10 +57,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options":{
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "dendro-app:build:production"
             },
+            
             "development": {
               "buildTarget": "dendro-app:build:development"
             }

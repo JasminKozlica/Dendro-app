@@ -1,1 +1,28 @@
-<p>density works!</p>
+<div class = "density-container">
+<h2>Unos podataka o gustoci šume</h2>
+
+<form [formGroup]="densityForm" (ngSubmit)="onSubmit()">
+    <label for="species">Vrsta drveta:</label>
+    <select formControlName = "species" required>
+        <option *ngFor="let tree of treeSpecies" [value]="tree.species">{{ tree.species }}</option>
+    </select>
+
+    <label for="height">Visina drveta (u metrima):</label>
+    <input type="number" formControlName="height" min="1" required />
+
+    <label for="diameter">Prečnik drveta (u cm):</label>
+    <input type="number" formControlName="diameter" min="1" required />
+
+    <label for="count">Broj stabala:</label>
+    <input type="text" formControlName="count" min="1" required />
+
+    <label for="location">Naziv lokacije:</label>
+    <input type="text" formControlName="location" required />
+
+    <button type="submit">Sacuvaj podatke</button>
+
+</form>
+<div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+</div>

@@ -1,4 +1,7 @@
 package com.dendroapp.repository;
 
-public interface ForestDensityRepository {
+import com.dendroapp.model.ForestDensity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ForestDensityRepository extends JpaRepository<ForestDensity, Long> {
 }

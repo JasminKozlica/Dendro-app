@@ -1,9 +1,10 @@
 package com.dendroapp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dendroapp.service.TreeService;
+
 import org.springframework.web.bind.annotation.*;
 import com.dendroapp.model.Tree;
-import com.dendroapp.repository.TreeRepository;
+
 import java.util.List;
 
 @RestController
@@ -25,4 +26,9 @@ public class DendroAppController {
     public List<Tree> getAllTrees(){
         return service.findAll();
     }
+@GetMapping
+    public String test(){
+        return "Backend radi";
 }
+}
+
