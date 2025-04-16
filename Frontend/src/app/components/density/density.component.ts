@@ -4,6 +4,7 @@ import { TreeService } from 'src/app/services/tree.service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgIf } from '@angular/common';
+import { count } from 'rxjs';
 
 @Component({
   selector: 'app-density',
@@ -41,22 +42,39 @@ export class DensityComponent {
     });
   }
 
-  onSubmit() {
-    if (this.densityForm.invalid) {
-      this.errorMessage = 'Molimo ispunite sva polja pravilno.';
-      return;
-    }
+  treesToSave: any[] = [];
 
-    this.http.post('http://localhost:8080/api/density', this.densityForm.value).subscribe({
-      next: () => {
-        this.successMessage = 'Podaci su uspješno sačuvani.';
+  addTree(){
+    if(this.densityForm.valid){
+      const formData = this.densityForm.value;
+      this.treesToSave.push({
+        species: formData.species,
+        height: formData.height,
+        diameter: formData.diameter,
+        treeCount: formData.count,
+        locationName: formData.location
+      });
+      this.densityForm.patchValue({ height:'', diameter:'', count:''})
+    }
+  }
+
+  onSubmit() {
+    if (this.treesToSave.length === 0 && this.densityForm.valid) {
+      this.addTree();
+    }
+  
+    this.http.post('http://localhost:8080/api/density/bulk', this.treesToSave).subscribe({
+      next: (res) => {
+        this.successMessage = "Podaci uspješno sačuvani!";
         this.errorMessage = '';
+        this.treesToSave = [];
         this.densityForm.reset();
       },
-      error: () => {
+      error: (err) => {
+        this.errorMessage = "Greška pri čuvanju podataka.";
         this.successMessage = '';
-        this.errorMessage = 'Greška pri spremanju podataka.';
       }
     });
   }
+  
 }

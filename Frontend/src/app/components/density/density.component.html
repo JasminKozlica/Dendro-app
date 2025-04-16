@@ -20,6 +20,18 @@
     <input type="text" formControlName="location" required />
 
     <button type="submit">Sacuvaj podatke</button>
+    <button type="button" (click)="addTree()">Dodaj sljedeće drvo</button>
+<button type="submit">Sačuvaj sve u bazu</button>
+
+<div *ngIf="treesToSave.length > 0">
+  <h4>Stabla spremna za unos:</h4>
+  <ul>
+    <li *ngFor="let t of treesToSave">
+      {{ t.species }} – {{ t.height }}m, {{ t.diameter }}cm, {{ t.treeCount }} stabala
+    </li>
+  </ul>
+</div>
+
 
 </form>
 <div *ngIf="successMessage" class="success">{{ successMessage }}</div>

@@ -1,1 +1,27 @@
-<p>search works!</p>
+<div class="search-container">
+    <h2>Pretraži šumu</h2>
+  
+    <form (ngSubmit)="onSearch()">
+      <label for="species">Vrsta drveta:</label>
+      <input type="text" [(ngModel)]="searchSpecies" name="species" />
+  
+      <label for="location">Lokacija:</label>
+      <input type="text" [(ngModel)]="searchLocation" name="location" />
+  
+      <button type="submit">Pretraži</button>
+    </form>
+  
+    <div *ngIf="results.length > 0">
+      <h3>Rezultati:</h3>
+      <ul>
+        <li *ngFor="let r of results">
+          {{ r.species }} – {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} stabala, {{ r.locationName }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="results.length === 0 && searched">
+      <p>Nema rezultata za zadate kriterije.</p>
+    </div>
+  </div>
+  

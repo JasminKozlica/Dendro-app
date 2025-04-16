@@ -26,9 +26,6 @@ public class DendroAppController {
     public List<Tree> getAllTrees(){
         return service.findAll();
     }
-@GetMapping
-    public String test(){
-        return "Backend radi";
-}
+
 }
 

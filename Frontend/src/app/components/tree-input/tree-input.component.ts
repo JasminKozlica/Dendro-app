@@ -11,7 +11,7 @@ console.log('TreeInputComponent loaded from module');
   
   templateUrl: './tree-input.component.html',
   styleUrls: ['./tree-input.component.css'],
-  imports: [CommonModule, FormsModule]  // ⬅️ dodaj ovo
+  imports: [CommonModule, FormsModule]  
 })
 export class TreeInputComponent implements OnInit {
   tree: Tree = {
