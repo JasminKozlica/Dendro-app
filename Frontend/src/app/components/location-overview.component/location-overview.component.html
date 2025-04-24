@@ -1,0 +1,29 @@
+<div class="overview-container">
+    <h2>Pregled lokacija</h2>
+  
+    <div *ngIf="isLoading">Učitavanje podataka...</div>
+  
+    <table *ngIf="locationsSummary.length > 0">
+      <thead>
+        <tr>
+          <th>Lokacija</th>
+          <th>Ukupan volumen (m³)</th>
+          <th>Ukupan broj stabala</th>
+          <th>Najzastupljenija vrsta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loc of locationsSummary">
+          <td>{{ loc.locationName }}</td>
+          <td>{{ loc.totalVolume | number: '1.2-2' }}</td>
+          <td>{{ loc.totalTrees }}</td>
+          <td>{{ loc.mostCommonSpecies }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="!isLoading && locationsSummary.length === 0">
+      Nema dostupnih podataka za prikaz.
+    </div>
+  </div>
+  

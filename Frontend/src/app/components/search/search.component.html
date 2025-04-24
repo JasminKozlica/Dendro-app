@@ -1,16 +1,19 @@
 <div class="search-container">
+
+  <!-- Forma za pretragu -->
+  <div class="search-form">
     <h2>Pretraži šumu</h2>
-  
     <form (ngSubmit)="onSearch()">
       <label for="species">Vrsta drveta:</label>
       <input type="text" [(ngModel)]="searchSpecies" name="species" />
-  
+
       <label for="location">Lokacija:</label>
       <input type="text" [(ngModel)]="searchLocation" name="location" />
-  
+
       <button type="submit">Pretraži</button>
     </form>
-  
+
+    <!-- Rezultati pretrage -->
     <div *ngIf="results.length > 0">
       <h3>Rezultati:</h3>
       <ul>
@@ -19,9 +22,54 @@
         </li>
       </ul>
     </div>
-  
+
     <div *ngIf="results.length === 0 && searched">
       <p>Nema rezultata za zadate kriterije.</p>
     </div>
   </div>
-  
+
+  <!-- Lokacije i podaci za lokaciju -->
+  <div class="location-data">
+    <div class="locations">
+      <h3>Lokacije</h3>
+      <ul>
+        <li *ngFor="let loc of locations" (click)="fetchByLocation(loc)"
+            [class.selected]="loc === selectedLocation">
+          {{ loc }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="results-table">
+      <h3>Podaci za lokaciju: <span>{{ selectedLocation }}</span></h3>
+
+      <table *ngIf="densities.length > 0">
+        <thead>
+          <tr>
+            <th>Vrsta drveta</th>
+            <th>Visina (m)</th>
+            <th>Prečnik (cm)</th>
+            <th>Broj stabala</th>
+            <th>Volumen (m³)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of densities">
+            <td>{{ d.species }}</td>
+            <td>{{ d.height }}</td>
+            <td>{{ d.diameter }}</td>
+            <td>{{ d.treeCount }}</td>
+            <td>{{ (Math.PI * Math.pow((d.diameter / 100) / 2, 2) * d.height * d.treeCount) | number: '1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p *ngIf="densities.length > 0" style="margin-top: 10px; font-weight: bold;">
+        Ukupan volumen: {{ totalVolume | number:'1.2-2' }} m³
+      </p>
+
+      <p *ngIf="densities.length === 0 && selectedLocation">Nema podataka za odabranu lokaciju.</p>
+    </div>
+  </div>
+
+</div>

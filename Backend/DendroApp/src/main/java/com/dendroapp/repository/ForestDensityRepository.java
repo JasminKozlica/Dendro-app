@@ -9,5 +9,5 @@ public interface ForestDensityRepository extends JpaRepository<ForestDensity, Lo
     List<ForestDensity> findBySpeciesContainingIgnoreCase(String species);
     List<ForestDensity> findByLocationNameContainingIgnoreCase(String location);
     List<ForestDensity> findBySpeciesContainingIgnoreCaseAndLocationNameContainingIgnoreCase(String species, String location);
-
+    List<ForestDensity> findByLocationNameOrderByLocationName(String location);
 }

@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 console.log('TreeInputComponent loaded from module');
 @Component({
   selector: 'app-tree-input',
-  
+  standalone: true,
   templateUrl: './tree-input.component.html',
   styleUrls: ['./tree-input.component.css'],
   imports: [CommonModule, FormsModule]  
@@ -18,6 +18,7 @@ export class TreeInputComponent implements OnInit {
     species: '',
     diameter: 0,
     height: 0,
+    quantity: 1
   };
 
   formula: 'smalian' | 'huber' = 'smalian';
@@ -53,7 +54,8 @@ export class TreeInputComponent implements OnInit {
         : this.calculationService.calculateVolumeHuber(this.tree);
 
     calculation$.subscribe((volume: number) => {
-      this.resultVolume = volume;
+      const quantity = this.tree.quantity ?? 1;
+      this.resultVolume = volume * quantity;
       this.loading = false;
     });
   }

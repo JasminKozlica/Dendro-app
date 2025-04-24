@@ -47,6 +47,7 @@
 			<optional>true</optional>
 		</dependency>
 
+
 		<!-- Jakarta Persistence (optional but good for compatibility) -->
 		<dependency>
 			<groupId>jakarta.persistence</groupId>

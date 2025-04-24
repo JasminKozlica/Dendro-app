@@ -18,7 +18,8 @@ public class TreeSpeciesController {
             Map.of("species", "Javor", "description", "Dekorativno i korisno za instrumente."),
             Map.of("species", "Topola", "description", "Lagano drvo, brzo raste."),
             Map.of("species", "Bor", "description", "Meko drvo, široka upotreba."),
-            Map.of("species", "Ćešljugar", "description", "Manje poznato, koristi se za detalje."),
+            Map.of("species", "Grab", "description", "Tvrdo i teško drvo, koristi se za ogrjev i alatne drške."),
+                Map.of("species", "Bjela breza", "description", "Lijepo dekorativno drvo, koristi se za furnir i ogrjev."),
             Map.of("species", "Vrba", "description", "Fleksibilno drvo, koristi se za košare.")
         );
     }

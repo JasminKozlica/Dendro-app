@@ -26,4 +26,23 @@
   .nav-links a:hover {
     text-decoration: underline;
   }
+  .container {
+    display: flex;
+    height: 100vh; /* Optional: full height */
+    width: 100%;
+  }
+  
+  .left {
+    flex: 7; /* 70% */
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .right {
+    flex: 3; /* 30% */
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto; /* If content is long */
+    border-left: 1px solid #ccc; /* Optional divider */
+  }
   

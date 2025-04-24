@@ -16,6 +16,7 @@ public class ForestDensity {
     private double diameter;
     private int treeCount;
     private String locationName;
+    private double volume;
 
     public Long getId(){ return id; }
     public void setId(Long id) { this.id = id; }
@@ -34,4 +35,12 @@ public class ForestDensity {
 
     public String getLocationName(){ return locationName;}
     public void setLocationName(String LocationName) {this.locationName=LocationName;}
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
 }

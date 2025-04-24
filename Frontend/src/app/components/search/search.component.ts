@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,13 +10,46 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
+  Math = Math;
   searchSpecies: string = '';
   searchLocation: string = '';
   results: any[] = [];
   searched: boolean = false;
+  densities: any[] = [];
+  locations: string[] = [];
+  selectedLocation: string = '';
 
   constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+      this.fetchLocations();
+  }
+
+  fetchLocations(){
+    this.http.get<string[]>('/api/density/locations').subscribe(data => {
+      this.locations = data;
+    });
+  }
+
+  fetchByLocation(location: string){
+    this.selectedLocation = location;
+    this.http.get<any[]>('/api/density/by-location/${location}').subscribe(data => {
+      this.densities = data;
+      this.totalVolume = this.calculateTotalVolume();
+    });
+  }
+
+  totalVolume: number = this.calculateTotalVolume();
+  
+
+  calculateTotalVolume(): number {
+    return this.densities.reduce((total, d) => {
+      const radius = (d.diameter / 100) / 2;
+      const volume = Math.PI * Math.pow(radius, 2) * d.height * d.treeCount;
+      return total + volume;
+    }, 0);
+  }
 
   onSearch() {
     let params = new HttpParams();
@@ -28,7 +61,7 @@ export class SearchComponent {
       params = params.set('location', this.searchLocation);
     }
 
-    this.http.get<any[]>('http://localhost:8080/api/density/search', { params }).subscribe(
+    this.http.get<any[]>('/api/density/search', { params }).subscribe(
       data => {
         this.results = data;
         this.searched = true;

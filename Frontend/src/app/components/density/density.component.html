@@ -19,10 +19,10 @@
     <label for="location">Naziv lokacije:</label>
     <input type="text" formControlName="location" required />
 
-    <button type="submit">Sacuvaj podatke</button>
-    <button type="button" (click)="addTree()">Dodaj sljedeće drvo</button>
-<button type="submit">Sačuvaj sve u bazu</button>
-
+    <div class="btn-group-horizontal">
+    <button type="button" class="btn-add" (click)="addTree()">Dodaj sljedeće drvo</button>
+<button type="submit" class="btn-save">Sačuvaj sve u bazu</button>
+</div>
 <div *ngIf="treesToSave.length > 0">
   <h4>Stabla spremna za unos:</h4>
   <ul>

@@ -17,6 +17,9 @@
   <label>Visina (m):</label>
   <input type="number" [(ngModel)]="tree.height" class="form-control" placeholder="npr. 10" />
 
+  <label>Broj stabala:</label>
+  <input type="number" [(ngModel)]="tree.quantity" class="form-control" placeholder="npr. 3" />
+  
   <label>Formula:</label>
   <select [(ngModel)]="formula" class="form-control">
     <option value="smalian">Smalianova</option>
@@ -25,7 +28,7 @@
 
   <div class="btn-group">
     <button (click)="calculate()" class="btn-calc">Izračunaj volumen</button>
-    <button (click)="submitTree()" class="btn-submit">Unesi drvo</button>
+   
   </div>
 
   <div *ngIf="loading" class="loading-text">Računanje volumena...</div>

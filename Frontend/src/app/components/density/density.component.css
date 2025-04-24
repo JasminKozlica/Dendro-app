@@ -44,3 +44,33 @@ button:hover {
     margin-top: 15px;
     color: red;
 }
+.btn-group-horizontal {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-add {
+    background-color: #1976d2;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-add:hover {
+    background-color: #28a745;
+
+}
+
+.btn-save {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-save:hover {
+    background-color: #218838;
+}

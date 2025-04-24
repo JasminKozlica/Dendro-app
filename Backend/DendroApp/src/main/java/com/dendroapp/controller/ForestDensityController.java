@@ -1,10 +1,12 @@
 package com.dendroapp.controller;
 
 import com.dendroapp.model.ForestDensity;
+import com.dendroapp.repository.ForestDensityRepository;
 import com.dendroapp.service.ForestDensityService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/density")
@@ -55,5 +57,10 @@ public class ForestDensityController {
         } else {
             return densityService.findAll();
         }
+    }
+    @GetMapping("/overview")
+    public List<ForestDensity> getLocationOverview(@RequestParam String location) {
+
+    return densityService.getOverviewByLocation(location);
     }
 }

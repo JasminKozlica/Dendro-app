@@ -11,9 +11,14 @@ public class Tree {
 
     private String species; 
     private double height;  
-    private double diameter; 
+    private double diameter;
+    //private double totalVolume;
     
-    // Getter  , setter 
+    // Getter  , setter
+
+    //public double getTotalVolume() { return totalVolume;}
+    //public void setTotalVolume(double totalVolume) { this.totalVolume = totalVolume;}
+
     public Long getId() { 
         return id; 
     }

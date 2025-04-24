@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { TreeInputComponent } from './components/tree-input/tree-input.component';
+import { TreeInputComponent } from '../tree-input/tree-input.component';
 
 @NgModule({
   declarations: [
@@ -14,8 +14,8 @@ import { TreeInputComponent } from './components/tree-input/tree-input.component
   ],
   imports: [
     BrowserModule,
-    CommonModule,  // ✅ Dodaj ovo
-    FormsModule,   // ✅ I ovo
+    CommonModule,  // 
+    FormsModule,   // 
     HttpClientModule
   ],
   providers: [],
