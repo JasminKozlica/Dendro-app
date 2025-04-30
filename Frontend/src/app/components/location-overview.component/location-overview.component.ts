@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-location-overview',
@@ -13,10 +14,15 @@ export class LocationOverviewComponent implements OnInit {
   locationsSummary: any[] = [];
   isLoading: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.fetchLocationSummaries();
+  }
+
+
+  switchLanguage(lang: string) {
+    this.translate.use(lang);
   }
 
   fetchLocationSummaries() {

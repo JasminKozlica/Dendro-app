@@ -5,13 +5,14 @@ import { TreeService } from 'src/app/services/tree.service';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 console.log('TreeInputComponent loaded from module');
 @Component({
   selector: 'app-tree-input',
   standalone: true,
   templateUrl: './tree-input.component.html',
   styleUrls: ['./tree-input.component.css'],
-  imports: [CommonModule, FormsModule]  
+  imports: [CommonModule, FormsModule,TranslateModule]  
 })
 export class TreeInputComponent implements OnInit {
   tree: Tree = {

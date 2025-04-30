@@ -5,13 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { count } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-density',
   templateUrl: './density.component.html',
   styleUrls: ['./density.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NgIf]
+  imports: [ReactiveFormsModule, CommonModule, NgIf,TranslateModule]
 })
 export class DensityComponent {
   densityForm!: FormGroup;
