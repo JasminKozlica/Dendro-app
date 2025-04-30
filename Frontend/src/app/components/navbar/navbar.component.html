@@ -1,6 +1,12 @@
 <nav class="navbar">
-    <a routerLink="/search" routerLinkActive="active">Baza podataka</a>
+    <a routerLink="/search" routerLinkActive="active">{{ 'DATABASE' | translate }}</a>
     <a routerLink="/density" routerLinkActive="active">Unos u bazu podataka</a>
     <a routerLink="/tree-input" routerLinkActive="active">Izracunaj m³ drveta</a>
+
+<select (change)="switchLanguage($event)">
+    <option value="en">English</option>
+    <option value="bs">Bosanski</option>
+    <option value="de">Deutsch</option>
+  </select>
 </nav>
 <router-outlet></router-outlet>

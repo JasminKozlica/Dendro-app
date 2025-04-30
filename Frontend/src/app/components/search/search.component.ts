@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -20,8 +22,12 @@ export class SearchComponent implements OnInit {
   locations: string[] = [];
   selectedLocation: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient , private translate: TranslateService) {
+    translate.addLangs(['en', 'bs', 'de']);
+  translate.setDefaultLang('bs');
+  }
 
+  
   ngOnInit(): void {
       this.fetchLocations();
   }

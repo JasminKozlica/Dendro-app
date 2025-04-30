@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-location-overview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './location-overview.component.html',
   styleUrls: ['./location-overview.component.css']
 })
@@ -21,8 +23,11 @@ export class LocationOverviewComponent implements OnInit {
   }
 
 
-  switchLanguage(lang: string) {
-    this.translate.use(lang);
+  switchLanguage(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedLanguage = selectElement.value;
+   
+    this.translate.use(selectedLanguage);
   }
 
   fetchLocationSummaries() {

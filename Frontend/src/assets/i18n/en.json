@@ -14,8 +14,8 @@
 
     "VOLUME":"Complet volume (m³)",
     "COMP-TREE-COUNT":"Complete tree count",
-    "COMMON_SPECIES":"Most common types of wood"
-
+    "COMMON_SPECIES":"Most common types of wood",
+    "DATABASE": "Database"
 
 
 }

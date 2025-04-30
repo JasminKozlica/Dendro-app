@@ -1,0 +1,19 @@
+{
+"INPUT": "Podatci o gustoci sume",
+"SPECIES": "Vrste",
+"HEIGHT": "Visina",
+"DIAMETER": "Promjer",
+"COUNT": "Broj stabala",
+"LOCATION":"Lokacija",
+"ADDTREE": "Dodaj sljedece drvo",
+"SAVE": "Sacuvaj u bazu podataka",
+"READY": "Stabla spremna za unos u bazu podataka",
+"TREE": "Stabla",
+
+
+"VOLUME":"Ukupna kolicina (m³)",
+"COMP-TREE-COUNT":"Ukupan broj stabala",
+"COMMON_SPECIES":"Najzastupljenija vrsta drveta",
+"DATABASE": "Baza podataka"
+
+}
