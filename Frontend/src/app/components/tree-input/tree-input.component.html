@@ -1,8 +1,8 @@
 <div class="tree-form">
-  <h2>Unos drveta</h2>
+  <h2>{{'TREE-INPUT'|translate}}</h2>
 
-  <label>Vrsta drveta:</label>
-  <input list="speciesList" [(ngModel)]="tree.species" placeholder="Unesite ili izaberite vrstu drveta" />
+  <label>{{'SPECIES'|translate}}</label>
+  <input list="speciesList" [(ngModel)]="tree.species" [placeholder]="'SPH'|translate"/>
   <datalist id="speciesList">
     <option *ngFor="let species of topSpecies" [value]="species.species" [title]="species.description">
       {{ species.species }}
@@ -11,32 +11,31 @@
   </datalist>
   
 
-  <label>Promjer (cm):</label>
-  <input type="number" [(ngModel)]="tree.diameter" class="form-control" placeholder="npr. 25" />
+  <label>{{"DIAMETER"|translate}}</label>
+  <input type="number" [(ngModel)]="tree.diameter" class="form-control" [placeholder]="'EXMP'|translate" />
 
-  <label>Visina (m):</label>
-  <input type="number" [(ngModel)]="tree.height" class="form-control" placeholder="npr. 10" />
+  <label>{{"HEIGHT"| translate}}</label>
+  <input type="number" [(ngModel)]="tree.height" class="form-control" [placeholder]="'EXMP-2'|translate" />
 
-  <label>Broj stabala:</label>
-  <input type="number" [(ngModel)]="tree.quantity" class="form-control" placeholder="npr. 3" />
+  <label>{{"COUNT"|translate}}</label>
+  <input type="number" [(ngModel)]="tree.quantity" class="form-control" [placeholder]="'EXMP-3'|translate" />
   
-  <label>Formula:</label>
+  <label>{{"FORML"|translate}}</label>
   <select [(ngModel)]="formula" class="form-control">
-    <option value="smalian">Smalianova</option>
-    <option value="huber">Huberova</option>
+    <option value="smalian">{{"SML"|translate}}</option>
+    <option value="huber">{{"HBR"|translate }}</option>
   </select>
 
   <div class="btn-group">
-    <button (click)="calculate()" class="btn-calc">Izračunaj volumen</button>
+    <button (click)="calculate()" class="btn-calc">{{"CALC-VLM" | translate}}</button>
    
   </div>
 
-  <div *ngIf="loading" class="loading-text">Računanje volumena...</div>
+  <div *ngIf="loading" class="loading-text">{{"CALC-VLM2"|translate}}</div>
 
   <div *ngIf="resultVolume !== null && !loading" class="result-box">
-    <strong>Volumen:</strong> {{ resultVolume | number: '1.2-2' }} m³
+    <strong>{{"VLM2"|translate}}</strong> {{ resultVolume | number: '1.2-2' }} m³
   </div>
-</div>
 
 <div class="species-list">
   <h3>Najzastupljenije vrste drveta (Unsko-sanski kanton)</h3>

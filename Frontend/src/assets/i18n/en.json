@@ -1,23 +1,39 @@
 {
-     "INPUT": "Forest Density Data input",
-"SPECIES": "Species:",
-"HEIGHT": "Height of tree (in meter):",
-"DIAMETER": "Tree Diameter (in cm):",
-"COUNT": "Number of trees",
-"LOCATION":"Location",
-"ADDTREE": "Add next Tree",
-"SAVE": "Save in DB",
-"READY": "Tree ready for input",
-"TREE": "tree",
-
-
-
-    "VOLUME":"Complet volume (m³)",
-    "COMP-TREE-COUNT":"Complete tree count",
-    "COMMON_SPECIES":"Most common types of wood",
+    "INPUT": "Forest density data entry",
+    "SPECIES": "Tree species:",
+    "HEIGHT": "Tree height (in meters):",
+    "DIAMETER": "Tree diameter (in cm):",
+    "COUNT": "Number of trees",
+    "LOCATION": "Location",
+    "ADDTREE": "Add next tree",
+    "SAVE": "Save to database",
+    "READY": "Trees ready for entry",
+    "TREE": "trees",
+    "DATA": "No data available to display",
+    "LOC-OVV": "Location overview data",
+    "LOADING": "Loading data...",
+    "VOLUME": "Total volume (m³)",
+    "COMP-TREE-COUNT": "Total amount of wood",
+    "COMMON_SPECIES": "Most common tree species",
     "DATABASE": "Database",
-    "DBI": "Database input",
-    "CALC":"Calculate m³ woods"
-
-
-}
+    "DBI": "Database entry",
+    "CALC": "Calculate wood volume",
+    "SRC": "Search forest",
+    "SRC-S": "Search",
+    "RESULT": "Results",
+    "VL-1": "Volume (m³)",
+    "VL-2": "Total Volume:",
+    "LOC-1": "No data for selected location.",
+    "TREE-INPUT": "Tree input",
+    "SPH": "Enter or select tree species",
+    "EXMP-1": "e.g. 25 cm",
+    "EXMP-2": "e.g. 10 m",
+    "EXMP-3": "e.g. 3 trees",
+    "FORML": "Formula",
+    "SML": "Smail's",
+    "HBR": "Huber's",
+    "CALC-VLM": "Calculate volume",
+    "CALC-VLM2": "Calculating volume...",
+    "VLM2": "Volume:"
+  }
+  

@@ -1,7 +1,11 @@
 .navbar {
     display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     gap: 20px;
-    padding:10px 20px;
     background-color: #2e7d32;
     color: white;
 }
@@ -15,3 +19,71 @@
 .navbar a.active{
     border-bottom: 2px solid yellow;
 }
+.language-select select {
+    padding: 10px 14px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #139353;
+    color: #333;
+    appearance: none;
+     background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    min-width: 150px;
+  }
+  
+  /* Smooth hover effect */
+  .language-select select:hover {
+    background-color: #040d18;
+    border-color: #007bff;
+  }
+  .language-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .language-selected {
+    padding: 10px 14px;
+    background-color: #28c438;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .language-selected:hover {
+    background-color: #225f2c;
+  }
+  
+  .language-menu {
+    color:#040d18;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    background-color: #fff;
+    border: 1px solid #1ccf5a;
+    border-radius: 8px;
+    display: none;
+    min-width: 150px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .language-dropdown:hover .language-menu {
+    display: block;
+  }
+  
+  .language-menu li {
+    padding: 10px 14px;
+    transition: background-color 0.2s;
+  }
+  
+  .language-menu li:hover {
+    background-color: #50e767;
+  }

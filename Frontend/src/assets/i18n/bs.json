@@ -1,4 +1,5 @@
 {
+
 "INPUT": "Unos podataka o gustoci šume",
 "SPECIES": "Vrsta drveta:",
 "HEIGHT": "Visina drveta (u metrima):",
@@ -9,9 +10,38 @@
 "SAVE": "Sacuvaj u bazu podataka",
 "READY": "Stabla spremna za unos",
 "TREE": "stabla",
+ 
+"DATA":"Nema dostupnih podataka za prikaz",
+"LOC-OVV":"Podatci za pregled lokacije",
+"LOADING":"Učitavanje podataka...",
+"VOLUME":"Ukupan volumen (m³)",
+"COMP-TREE-COUNT":"Ukupna kolicina drveta",
+"COMMON_SPECIES":"Najzastupljenije vrste drveta",
 
 "DATABASE": "Baza Podataka",
 "DBI": "Unos u bazu podataka",
-"CALC":"Izracunaj m³ drveta"
+"CALC":"Izracunaj m³ drveta",
+
+"SRC":"Pretrazi sumu",
+"SRC-S":"Pretrazi",
+"RESULT":"Rezultati",
+"VL-1":"Volumen (m³)",
+"VL-2":"Ukupan Volumen: ",
+"LOC-1":"Nema podataka za odabranu lokaciju.",
+
+
+"TREE-INPUT":"Unos drveta",
+"SPH":"Unesite ili izaberite vrstu drveta",
+"EXMP-1":"npr. 25 cm",
+"EXMP-2":"npr. 10 m",
+"EXMP-3":"npr 3 stabla",
+"FORML":"Formula",
+"SML":"Smailanova",
+"HBR":"Huberova",
+"CALC-VLM":"Izračunaj volumen",
+"CALC-VLM2":"Računanje volumena...",
+"VLM2":"Volumen: "
+
+
 
 }

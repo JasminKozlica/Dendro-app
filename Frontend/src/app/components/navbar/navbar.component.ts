@@ -15,8 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class NavbarComponent{
   constructor(private translate: TranslateService){}
 
-  switchLanguage(event: Event){
-    const selectedLanguage = (event.target as HTMLSelectElement).value;
-    this.translate.use(selectedLanguage);
+  switchLanguage(lang: string){
+    this.translate.use(lang);
   }
 }

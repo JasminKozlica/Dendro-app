@@ -5,9 +5,9 @@
     <option value="en">English</option>
   </select>
   
-    <h2>Pregled lokacija</h2>
+    <h2>{{'LOC-OVV'|translate}}</h2>
   
-    <div *ngIf="isLoading">Učitavanje podataka...</div>
+    <div *ngIf="isLoading">{{ 'LOADING'|translate}}</div>
   
     <table *ngIf="locationsSummary.length > 0">
       <thead>
@@ -29,7 +29,7 @@
     </table>
   
     <div *ngIf="!isLoading && locationsSummary.length === 0">
-      Nema dostupnih podataka za prikaz.
+      {{'DATA' | translate}}
     </div>
   </div>
   

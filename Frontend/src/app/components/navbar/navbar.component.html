@@ -2,11 +2,15 @@
     <a routerLink="/search" routerLinkActive="active">{{ 'DATABASE' | translate }}</a>
     <a routerLink="/density" routerLinkActive="active">{{ 'DBI'| translate }}</a>
     <a routerLink="/tree-input" routerLinkActive="active">{{ 'CALC' | translate }}</a>
-
-<select (change)="switchLanguage($event)">
-    <option value="en">English</option>
-    <option value="bs">Bosanski</option>
-    <option value="de">Deutsch</option>
-  </select>
+    <div class="language-dropdown">
+      <div class="language-selected">
+        🌐 Language
+      </div>
+      <ul class="language-menu">
+        <li (click)="switchLanguage('en')">English</li>
+        <li (click)="switchLanguage('bs')">Bosanski</li>
+        <li (click)="switchLanguage('de')">Deutsch</li>
+      </ul>
+    </div>
 </nav>
 <router-outlet></router-outlet>

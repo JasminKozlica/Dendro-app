@@ -2,36 +2,36 @@
 
   <!-- Forma za pretragu -->
   <div class="search-form">
-    <h2>Pretraži šumu</h2>
+    <h2>{{'SRC'|translate}}</h2>
     <form (ngSubmit)="onSearch()">
-      <label for="species">Vrsta drveta:</label>
+      <label for="species">{{'SPECIES'|translate}}</label>
       <input type="text" [(ngModel)]="searchSpecies" name="species" />
 
-      <label for="location">Lokacija:</label>
+      <label for="location">{{'LOCATION' | translate }}</label>
       <input type="text" [(ngModel)]="searchLocation" name="location" />
 
-      <button type="submit">Pretraži</button>
+      <button type="submit">{{ 'SRC-S'|translate}}</button>
     </form>
 
     <!-- Rezultati pretrage -->
     <div *ngIf="results.length > 0">
-      <h3>Rezultati:</h3>
+      <h3>{{'RESULT' | translate}}</h3>
       <ul>
         <li *ngFor="let r of results">
-          {{ r.species }} – {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} stabala, {{ r.locationName }}
+          {{ r.species }} – {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} {{'TREE'|translate}}, {{ r.locationName }}
         </li>
       </ul>
     </div>
 
     <div *ngIf="results.length === 0 && searched">
-      <p>Nema rezultata za zadate kriterije.</p>
+      <p>{{"DATA" | translate}}</p>
     </div>
   </div>
 
   <!-- Lokacije i podaci za lokaciju -->
   <div class="location-data">
     <div class="locations">
-      <h3>Lokacije</h3>
+      <h3>{{'LOCATION'|translate}}</h3>
       <ul>
         <li *ngFor="let loc of locations" (click)="fetchByLocation(loc)"
             [class.selected]="loc === selectedLocation">
@@ -46,11 +46,11 @@
       <table *ngIf="densities.length > 0">
         <thead>
           <tr>
-            <th>Vrsta drveta</th>
-            <th>Visina (m)</th>
-            <th>Prečnik (cm)</th>
-            <th>Broj stabala</th>
-            <th>Volumen (m³)</th>
+            <th>{{'SPECIES'|translate}}</th>
+            <th>{{'HEIGHT'|translate}}</th>
+            <th>{{'DIAMETER'|translate}}</th>
+            <th>{{'COUNT'|translate}}</th>
+            <th>{{'VL-1'|translate}}</th>
           </tr>
         </thead>
         <tbody>
@@ -65,10 +65,10 @@
       </table>
 
       <p *ngIf="densities.length > 0" style="margin-top: 10px; font-weight: bold;">
-        Ukupan volumen: {{ totalVolume | number:'1.2-2' }} m³
+        {{'VL-2'|translate}} {{ totalVolume | number:'1.2-2' }} m³
       </p>
 
-      <p *ngIf="densities.length === 0 && selectedLocation">Nema podataka za odabranu lokaciju.</p>
+      <p *ngIf="densities.length === 0 && selectedLocation">{{'LOC-1'|translate}}</p>
     </div>
   </div>
 
