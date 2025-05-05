@@ -1,19 +1,17 @@
 {
-"INPUT": "Podatci o gustoci sume",
-"SPECIES": "Vrste",
-"HEIGHT": "Visina",
-"DIAMETER": "Promjer",
+"INPUT": "Unos podataka o gustoci šume",
+"SPECIES": "Vrsta drveta:",
+"HEIGHT": "Visina drveta (u metrima):",
+"DIAMETER": "Prečnik drveta (u cm):",
 "COUNT": "Broj stabala",
 "LOCATION":"Lokacija",
 "ADDTREE": "Dodaj sljedece drvo",
 "SAVE": "Sacuvaj u bazu podataka",
-"READY": "Stabla spremna za unos u bazu podataka",
-"TREE": "Stabla",
+"READY": "Stabla spremna za unos",
+"TREE": "stabla",
 
-
-"VOLUME":"Ukupna kolicina (m³)",
-"COMP-TREE-COUNT":"Ukupan broj stabala",
-"COMMON_SPECIES":"Najzastupljenija vrsta drveta",
-"DATABASE": "Baza podataka"
+"DATABASE": "Baza Podataka",
+"DBI": "Unos u bazu podataka",
+"CALC":"Izracunaj m³ drveta"
 
 }

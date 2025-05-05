@@ -1,33 +1,33 @@
 <div class = "density-container">
-<h2>Unos podataka o gustoci šume</h2>
+<h2>{{'INPUT'| translate }}</h2>
 
 <form [formGroup]="densityForm" (ngSubmit)="onSubmit()">
-    <label for="species">Vrsta drveta:</label>
+    <label for="species">{{ 'SPECIES' | translate}}</label>
     <select formControlName = "species" required>
         <option *ngFor="let tree of treeSpecies" [value]="tree.species">{{ tree.species }}</option>
     </select>
 
-    <label for="height">Visina drveta (u metrima):</label>
+    <label for="height">{{ 'HEIGHT' | translate}}</label>
     <input type="number" formControlName="height" min="1" required />
 
-    <label for="diameter">Prečnik drveta (u cm):</label>
+    <label for="diameter">{{'DIAMETER' | translate }}:</label>
     <input type="number" formControlName="diameter" min="1" required />
 
-    <label for="count">Broj stabala:</label>
+    <label for="count">{{ 'COUNT' | translate }}</label>
     <input type="text" formControlName="count" min="1" required />
 
-    <label for="location">Naziv lokacije:</label>
+    <label for="location">{{ 'LOCATION' | translate }}</label>
     <input type="text" formControlName="location" required />
 
     <div class="btn-group-horizontal">
-    <button type="button" class="btn-add" (click)="addTree()">Dodaj sljedeće drvo</button>
-<button type="submit" class="btn-save">Sačuvaj sve u bazu</button>
+    <button type="button" class="btn-add" (click)="addTree()">{{ 'ADDTREE' | translate}}</button>
+<button type="submit" class="btn-save">{{ 'SAVE' | translate }}</button>
 </div>
 <div *ngIf="treesToSave.length > 0">
-  <h4>Stabla spremna za unos:</h4>
+  <h4>{{ 'READY' | translate }}</h4>
   <ul>
     <li *ngFor="let t of treesToSave">
-      {{ t.species }} – {{ t.height }}m, {{ t.diameter }}cm, {{ t.treeCount }} stabala
+      {{ t.species }} – {{ t.height }}m, {{ t.diameter }}cm, {{ t.treeCount }} {{'TREE' | translate}}
     </li>
   </ul>
 </div>

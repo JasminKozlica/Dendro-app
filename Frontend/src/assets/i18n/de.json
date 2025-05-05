@@ -1,20 +1,20 @@
-{
-"INPUT": "Forest density data input",
-"SPECIES": "Species",
-"HEIGHT": "Height",
-"DIAMETER": "Diameter",
-"COUNT": "Number of trees",
-"LOCATION":"Location",
-"ADDTREE": "Add next tree",
-"SAVE": "Save in Database",
-"READY": "Trees ready for input in Database",
-"TREE": "Trees",
+{"INPUT": "Eingabe der Walddichtedaten",
+"SPECIES": "Baumart",
+"HEIGHT": "Höhe",
+"DIAMETER": "Durchmesser",
+"COUNT": "Anzahl der Bäume",
+"LOCATION": "Standort",
+"ADDTREE": "Nächsten Baum hinzufügen",
+"SAVE": "In Datenbank speichern",
+"READY": "Bäume bereit zur Eingabe in die Datenbank",
+"TREE": "Bäume",
 
 
 "VOLUME":"Complet volume (m³)",
 "COMP-TREE-COUNT":"Complete tree count",
 "COMMON_SPECIES":"Most common types of wood",
-"DATABASE": "Datenbank"
-
+"DATABASE": "Datenbank",
+"DBI": "Datenbank eingabe",
+"CALC":"Berechne m³"
 
 }
