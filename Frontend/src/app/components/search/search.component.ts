@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
   }
 
   fetchLocations(){
-    this.http.get<string[]>('/api/density/locations').subscribe(data => {
+    this.http.get<string[]>('/api/density/search').subscribe(data => {
       this.locations = data;
     });
   }
