@@ -63,6 +63,34 @@ export class DensityComponent implements OnInit {
     this.successMessage = '';
     this.errorMessage = '';
   }
+  onSubmit(): void {
+  if (this.treesToSave.length === 0 && this.densityForm.valid) {
+    this.addTree();
+  }
+
+  if (this.treesToSave.length === 0) {
+    this.errorMessage = 'Unesite barem jedno drvo.';
+    return;
+  }
+
+  const saveRequests = this.treesToSave.map(tree =>
+    this.densityService.saveDensity(tree)
+  );
+
+  Promise.all(saveRequests.map(req => req.toPromise()))
+    .then(() => {
+      this.successMessage = 'Svi podaci uspješno sačuvani!';
+      this.errorMessage = '';
+      this.treesToSave = [];
+      this.densityForm.reset();
+    })
+    .catch((error) => {
+      console.error('Greška pri slanju podataka:', error);
+      this.successMessage = '';
+      this.errorMessage = 'Greška pri slanju podataka.';
+    });
+}
+
 
  
 }

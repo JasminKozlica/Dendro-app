@@ -18,12 +18,12 @@
       <h3>{{'RESULT' | translate}}</h3>
       <ul>
         <li *ngFor="let r of results">
-          {{ r.species }} – {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} {{'TREE'|translate}}, {{ r.locationName }}
+          {{ r.species }} - {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} {{'TREE'|translate}}, {{ r.locationName }}
+          <button (click)="onDelete(r.id)">Obriši</button>
+          <button (click)="onEdit(r)">Izmijeni</button>
         </li>
         
-  <li *ngIf="successMessage" class="success">{{ successMessage }}</li>
-  <li *ngIf="errorMessage" class="error">{{ errorMessage }}</li>
-      </ul>
+  </ul>
     </div>
     
 
@@ -31,5 +31,27 @@
       <p>{{"DATA" | translate}}</p>
     </div>
   </div>
-  
+  <div *ngIf="editItem">
+  <h3>Izmijeni unos</h3>
+  <form (ngSubmit)="onUpdate()">
+    <label>Vrsta:</label>
+    <input [(ngModel)]="editItem.species" name="speciesEdit" required />
+
+    <label>Visina (m):</label>
+    <input type="number" [(ngModel)]="editItem.height" name="heightEdit" required />
+
+    <label>Promjer (cm):</label>
+    <input type="number" [(ngModel)]="editItem.diameter" name="diameterEdit" required />
+
+    <label>Broj stabala:</label>
+    <input type="number" [(ngModel)]="editItem.treeCount" name="treeCountEdit" required />
+
+    <label>Lokacija:</label>
+    <input [(ngModel)]="editItem.locationName" name="locationEdit" required />
+
+    <button type="submit">Spasi</button>
+    <button type="button" (click)="editItem = null">Otkaži</button>
+  </form>
+</div>
+
   

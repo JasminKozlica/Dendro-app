@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Tree } from '@app/models/tree.model';
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
   locations: string[] = [];
   selectedLocation: string = '';
   totalVolume: number =0;
+  editItem: any = null;
 
   constructor(private http: HttpClient , 
     private translate: TranslateService
@@ -84,36 +85,36 @@ export class SearchComponent implements OnInit {
       }
     );
   }
-   removeTree(index: number): void {
-    this.treesToSave.splice(index, 1);
-  }
+  onEdit(item: any): void {
+  this.editItem = { ...item }; // kloniraj objekat za uređivanje
+}
 
-  onSubmit(): void {
-    if (this.treesToSave.length === 0 && this.densityForm.valid) {
-      this.addTree();
+onUpdate(): void {
+  this.http.put(`/api/density/${this.editItem.id}`, this.editItem).subscribe({
+    next: (updated) => {
+      const index = this.results.findIndex(r => r.id === this.editItem.id);
+      if (index !== -1) {
+        this.results[index] = updated;
+      }
+      this.editItem = null;
+    },
+    error: (err) => {
+      console.error('Greška pri ažuriranju:', err);
+      alert('Ažuriranje nije uspjelo.');
     }
-
-    if (this.treesToSave.length === 0) {
-      this.errorMessage = 'Unesite barem jedno drvo.';
-      return;
-    }
-
-    // ⚠️ Loop over each and send individual requests (you can replace with a batch endpoint later)
-    const saveRequests = this.treesToSave.map(tree =>
-      this.densityService.saveDensity(tree)
-    );
-
-    Promise.all(saveRequests.map(req => req.toPromise()))
-      .then(() => {
-        this.successMessage = 'Svi podaci uspješno sačuvani!';
-        this.errorMessage = '';
-        this.treesToSave = [];
-        this.densityForm.reset();
-      })
-      .catch((error) => {
-        console.error('Greška pri slanju podataka:', error);
-        this.successMessage = '';
-        this.errorMessage = 'Greška pri slanju podataka.';
-      });
+  });
+}
+onDelete(id: number): void {
+  if (confirm('Da li ste sigurni da želite obrisati ovaj unos?')) {
+    this.http.delete(`/api/density/${id}`).subscribe({
+      next: () => {
+        this.results = this.results.filter(item => item.id !== id);
+      },
+      error: (err) => {
+        console.error('Greška prilikom brisanja:', err);
+        alert('Brisanje nije uspjelo.');
+      }
+    });
   }
+}
 }
