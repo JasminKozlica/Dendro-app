@@ -35,6 +35,40 @@
     "CALC-VLM": "Calculate volume",
     "CALC-VLM2": "Calculating volume...",
     "VLM2": "Volume:",
-    "LOC-DT":"Location data :"
+    "LOC-DT":"Location data :",
+     "mostCommonTreeSpecies": {
+    "title": "Most Common Tree Species (Una-Sana Canton)",
+    "species": {
+      "bukva": "Beech: High-quality, hard wood, often used for firewood.",
+      "hrast": "Oak: Extremely strong wood, used in construction and furniture.",
+      "jela": "Fir: Soft wood, often used for construction.",
+      "smreka": "Spruce: Similar to fir, often used for paper production.",
+      "kesten": "Chestnut: Resistant wood, also used in food.",
+      "javor": "Maple: Decorative and useful for instruments.",
+      "topola": "Poplar: Lightweight wood, grows quickly.",
+      "bor": "Pine: Soft wood, widely used.",
+      "grab": "Hornbeam: Hard and heavy wood, used for firewood and tool handles.",
+      "breza": "White birch: Beautiful decorative wood, used for veneer and firewood.",
+      "vrba": "Willow: Flexible wood, used for baskets."
+    }
+  },
+  "1tree": "At least one tree entry is required.",
+  "treescc": "All data saved successfully!",
+  "treerr": "Error sending data:",
+  "error-species-load": "Error loading species.",
+  "search-error": "Error during search.",
+  "update-error": "Error during update:",
+  "update-failed": "Update failed.",
+  "Delete-confirmation": "Are you sure you want to delete this entry?",
+  "Delete-Runtime-Error": "Error during deletion:",
+  "Delete-Failed": "Deletion failed.",
+  "Success": "Tree was successfully added.",
+
+  
+  "Delete": "Delete",
+  "Change": "Change",
+  "Save": "Save",
+  "Cancel": "Cancel",
+  "Change-Entry": "Change entry"
   }
   

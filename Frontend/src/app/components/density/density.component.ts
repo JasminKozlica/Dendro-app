@@ -9,6 +9,7 @@ import { NgIf } from '@angular/common';
 import { count, Observable } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-density',
@@ -28,7 +29,8 @@ export class DensityComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private densityService: DensityService,
-    private treeService: TreeService
+    private treeService: TreeService,
+    private translate: TranslateService
   ) {
     this.densityForm = this.fb.group({
       species: ['', Validators.required],
@@ -49,7 +51,7 @@ export class DensityComponent implements OnInit {
         this.treeSpeciesList = data.map(d => d.species); // adjust if needed
       },
       error: (err) => {
-        console.error('Error loading species:', err);
+        console.error(this.translate.instant('error-species-load'), err);
       }
     });
   }
@@ -69,7 +71,7 @@ export class DensityComponent implements OnInit {
   }
 
   if (this.treesToSave.length === 0) {
-    this.errorMessage = 'Unesite barem jedno drvo.';
+    this.errorMessage = this.translate.instant('1tree');
     return;
   }
 
@@ -79,15 +81,15 @@ export class DensityComponent implements OnInit {
 
   Promise.all(saveRequests.map(req => req.toPromise()))
     .then(() => {
-      this.successMessage = 'Svi podaci uspješno sačuvani!';
+      this.successMessage = this.translate.instant('treescc');
       this.errorMessage = '';
       this.treesToSave = [];
       this.densityForm.reset();
     })
     .catch((error) => {
-      console.error('Greška pri slanju podataka:', error);
+      console.error(this.translate.instant('treerr'), error);
       this.successMessage = '';
-      this.errorMessage = 'Greška pri slanju podataka.';
+      this.errorMessage = this.translate.instant('treerr');
     });
 }
 

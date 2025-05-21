@@ -79,7 +79,7 @@ export class SearchComponent implements OnInit {
         this.searched = true;
       },
       error => {
-        console.error('Greška pri pretrazi', error);
+        console.error(this.translate.instant('search-error'), error);
         this.results = [];
         this.searched = true;
       }
@@ -99,20 +99,20 @@ onUpdate(): void {
       this.editItem = null;
     },
     error: (err) => {
-      console.error('Greška pri ažuriranju:', err);
-      alert('Ažuriranje nije uspjelo.');
+      console.error(this.translate.instant('update-error'), err);
+      alert(this.translate.instant('update-failed'));
     }
   });
 }
 onDelete(id: number): void {
-  if (confirm('Da li ste sigurni da želite obrisati ovaj unos?')) {
+  if (confirm(this.translate.instant('Delete-confirmation'))) {
     this.http.delete(`/api/density/${id}`).subscribe({
       next: () => {
         this.results = this.results.filter(item => item.id !== id);
       },
       error: (err) => {
-        console.error('Greška prilikom brisanja:', err);
-        alert('Brisanje nije uspjelo.');
+        console.error(this.translate.instant('Delete-Runtime-Error'), err);
+        alert(this.translate.instant('Delete-Failed'));
       }
     });
   }

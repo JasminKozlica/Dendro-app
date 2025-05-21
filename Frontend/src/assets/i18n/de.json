@@ -35,6 +35,41 @@
     "CALC-VLM": "Volumen berechnen",
     "CALC-VLM2": "Volumenberechnung...",
     "VLM2": "Volumen:",
-    "LOC-DT":"Standort daten :"
-  }
+    "LOC-DT":"Standort daten :",
+    
+  "mostCommonTreeSpecies": {
+    "title": "Die am häufigsten vorkommenden Baumarten (Kanton Una-Sana)",
+    "species": {
+      "bukva": "Buche: Hochwertiges, hartes Holz, oft als Brennholz verwendet.",
+      "hrast": "Eiche: Besonders festes Holz, wird im Bauwesen und für Möbel verwendet.",
+      "jela": "Tanne: Weiches Holz, wird oft als Bauholz verwendet.",
+      "smreka": "Fichte: Ähnlich wie Tanne, wird häufig zur Papierherstellung verwendet.",
+      "kesten": "Kastanie: Widerstandsfähiges Holz, auch in der Ernährung verwendet.",
+      "javor": "Ahorn: Dekorativ und nützlich für Musikinstrumente.",
+      "topola": "Pappel: Leichtes Holz, wächst schnell.",
+      "bor": "Kiefer: Weiches Holz, vielseitig verwendbar.",
+      "grab": "Hainbuche: Hartes und schweres Holz, für Brennholz und Werkzeuggriffe verwendet.",
+      "breza": "Weißbirke: Schönes, dekoratives Holz, für Furnier und Brennholz verwendet.",
+      "vrba": "Weide: Flexibles Holz, wird für Körbe verwendet."
+    }
+  },
+   "1tree": "Es muss mindestens ein Baum eingegeben werden.",
+  "treescc": "Alle Daten wurden erfolgreich gespeichert!",
+  "treerr": "Fehler beim Senden der Daten:",
+  "error-species-load": "Fehler beim Laden der Baumarten.",
+  "search-error": "Fehler bei der Suche.",
+  "update-error": "Fehler beim Aktualisieren:",
+  "update-failed": "Aktualisierung fehlgeschlagen.",
+  "Delete-confirmation": "Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?",
+  "Delete-Runtime-Error": "Fehler beim Löschen:",
+  "Delete-Failed": "Löschen fehlgeschlagen.",
+  "Success": "Der Baum wurde erfolgreich hinzugefügt.",
+
+  
+  "Delete": "Löschen",
+  "Change": "Ändern",
+  "Save": "Speichern",
+  "Cancel": "Abbrechen",
+  "Change-Entry": "Eintrag ändern"
+}
   

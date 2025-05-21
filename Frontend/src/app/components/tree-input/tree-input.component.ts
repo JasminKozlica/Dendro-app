@@ -6,6 +6,8 @@ import { TreeService } from 'src/app/services/tree.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
+
 console.log('TreeInputComponent loaded from module');
 @Component({
   selector: 'app-tree-input',
@@ -30,7 +32,8 @@ export class TreeInputComponent implements OnInit {
 
   constructor(
     private calculationService: CalculationService,
-    private treeService: TreeService
+    private treeService: TreeService,
+    private translateService : TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +44,7 @@ export class TreeInputComponent implements OnInit {
 
   submitTree() {
     this.treeService.addTree(this.tree).subscribe(() => {
-      alert('Drvo je uspješno uneseno.');
+      alert(this.translateService.instant('Success'));
     });
   }
 

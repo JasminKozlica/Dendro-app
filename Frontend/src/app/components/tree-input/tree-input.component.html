@@ -38,10 +38,19 @@
   </div>
 
 <div class="species-list">
-  <h3>Najzastupljenije vrste drveta (Unsko-sanski kanton)</h3>
-  <ul *ngIf="topSpecies.length > 0">
-    <li *ngFor="let species of topSpecies">
-      <strong>{{ species.species }}</strong>: {{ species.description }}
-    </li>
+ <h2>{{ 'mostCommonTreeSpecies.title' | translate }}</h2>
+  <ul>
+    <li>{{ 'mostCommonTreeSpecies.species.bukva' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.hrast' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.jela' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.smreka' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.kesten' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.javor' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.topola' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.bor' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.grab' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.breza' | translate }}</li>
+    <li>{{ 'mostCommonTreeSpecies.species.vrba' | translate }}</li>
   </ul>
+ 
 </div>
