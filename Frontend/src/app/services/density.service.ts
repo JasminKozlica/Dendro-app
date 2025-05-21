@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { ForestDensity } from "@app/models/density.model";
 
-export interface ForestDensity {
+export interface ForestDensitys {
     species: string;
     height: number;
     diameter: number;
@@ -18,4 +19,11 @@ export class DensityService {
     saveDensity(data: ForestDensity): Observable<ForestDensity>{
         return this.http.post<ForestDensity>(this.apiUrl, data);
     }
+    updateDensity(id: number, updatedDensity: ForestDensity): Observable<ForestDensity> {
+        return this.http.put<ForestDensity>(`${this.apiUrl}/${id}`, updatedDensity);
+      }
+    
+      deleteDensity(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+      }
 }

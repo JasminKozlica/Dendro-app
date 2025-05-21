@@ -20,56 +20,16 @@
         <li *ngFor="let r of results">
           {{ r.species }} – {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} {{'TREE'|translate}}, {{ r.locationName }}
         </li>
+        
+  <li *ngIf="successMessage" class="success">{{ successMessage }}</li>
+  <li *ngIf="errorMessage" class="error">{{ errorMessage }}</li>
       </ul>
     </div>
+    
 
     <div *ngIf="results.length === 0 && searched">
       <p>{{"DATA" | translate}}</p>
     </div>
   </div>
-
-  <!-- Lokacije i podaci za lokaciju -->
-  <div class="location-data">
-    <div class="locations">
-      <h3>{{'LOCATION'|translate}}</h3>
-      <ul>
-        <li *ngFor="let loc of locations" (click)="fetchByLocation(loc)"
-            [class.selected]="loc === selectedLocation">
-          {{ loc }}
-        </li>
-      </ul>
-    </div>
-
-    <div class="results-table">
-      <h3>{{"LOC-DT" | translate }} <span>{{ selectedLocation }}</span></h3>
-
-      <table *ngIf="densities.length > 0">
-        <thead>
-          <tr>
-            <th>{{'SPECIES'|translate}}</th>
-            <th>{{'HEIGHT'|translate}}</th>
-            <th>{{'DIAMETER'|translate}}</th>
-            <th>{{'COUNT'|translate}}</th>
-            <th>{{'VL-1'|translate}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let d of densities">
-            <td>{{ d.species }}</td>
-            <td>{{ d.height }}</td>
-            <td>{{ d.diameter }}</td>
-            <td>{{ d.treeCount }}</td>
-            <td>{{ (Math.PI * Math.pow((d.diameter / 100) / 2, 2) * d.height * d.treeCount) | number: '1.2-2' }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p *ngIf="densities.length > 0" style="margin-top: 10px; font-weight: bold;">
-        {{'VL-2'|translate}} {{ totalVolume | number:'1.2-2' }} m³
-      </p>
-
-      <p *ngIf="densities.length === 0 && selectedLocation">{{'LOC-1'|translate}}</p>
-    </div>
-  </div>
-
-</div>
+  
+  

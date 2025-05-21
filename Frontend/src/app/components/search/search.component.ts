@@ -21,8 +21,12 @@ export class SearchComponent implements OnInit {
   densities: any[] = [];
   locations: string[] = [];
   selectedLocation: string = '';
+  totalVolume: number =0;
 
-  constructor(private http: HttpClient , private translate: TranslateService) {
+  constructor(private http: HttpClient , 
+    private translate: TranslateService
+   
+  ) {
     translate.addLangs(['en', 'bs', 'de']);
   translate.setDefaultLang('bs');
   }
@@ -33,24 +37,25 @@ export class SearchComponent implements OnInit {
   }
 
   fetchLocations(){
-    this.http.get<string[]>('/api/density/search').subscribe(data => {
-      this.locations = data;
+    this.http.get<any[]>('/api/density/search').subscribe(data => {
+      const allLocations = data.map(d => d.location.name);  // ➜ samo ime lokacije
+      this.locations = Array.from(new Set(allLocations)); 
     });
   }
-
   fetchByLocation(location: string){
+    
+    const params = new HttpParams().set('location', location);
     this.selectedLocation = location;
-    this.http.get<any[]>('/api/density/by-location/${location}').subscribe(data => {
+    this.http.get<any[]>(`/api/density/search` , { params }).subscribe(data => {
       this.densities = data;
-      this.totalVolume = this.calculateTotalVolume();
+      this.totalVolume = this.calculateTotalVolume(data);
     });
   }
 
-  totalVolume: number = this.calculateTotalVolume();
   
 
-  calculateTotalVolume(): number {
-    return this.densities.reduce((total, d) => {
+  calculateTotalVolume(data: any[]): number {
+    return data.reduce((total, d) => {
       const radius = (d.diameter / 100) / 2;
       const volume = Math.PI * Math.pow(radius, 2) * d.height * d.treeCount;
       return total + volume;
@@ -78,5 +83,37 @@ export class SearchComponent implements OnInit {
         this.searched = true;
       }
     );
+  }
+   removeTree(index: number): void {
+    this.treesToSave.splice(index, 1);
+  }
+
+  onSubmit(): void {
+    if (this.treesToSave.length === 0 && this.densityForm.valid) {
+      this.addTree();
+    }
+
+    if (this.treesToSave.length === 0) {
+      this.errorMessage = 'Unesite barem jedno drvo.';
+      return;
+    }
+
+    // ⚠️ Loop over each and send individual requests (you can replace with a batch endpoint later)
+    const saveRequests = this.treesToSave.map(tree =>
+      this.densityService.saveDensity(tree)
+    );
+
+    Promise.all(saveRequests.map(req => req.toPromise()))
+      .then(() => {
+        this.successMessage = 'Svi podaci uspješno sačuvani!';
+        this.errorMessage = '';
+        this.treesToSave = [];
+        this.densityForm.reset();
+      })
+      .catch((error) => {
+        console.error('Greška pri slanju podataka:', error);
+        this.successMessage = '';
+        this.errorMessage = 'Greška pri slanju podataka.';
+      });
   }
 }

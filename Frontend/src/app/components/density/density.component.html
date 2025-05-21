@@ -1,40 +1,41 @@
-<div class = "density-container">
-<h2>{{'INPUT'| translate }}</h2>
+<div class="density-container">
+  <h2>{{ 'INPUT' | translate }}</h2>
 
-<form [formGroup]="densityForm" (ngSubmit)="onSubmit()">
-    <label for="species">{{ 'SPECIES' | translate}}</label>
-    <select formControlName = "species" required>
-        <option *ngFor="let tree of treeSpecies" [value]="tree.species">{{ tree.species }}</option>
+  <form [formGroup]="densityForm" (ngSubmit)="onSubmit()">
+    <label for="species">{{ 'SPECIES' | translate }}</label>
+    <select formControlName="species" required>
+      <option *ngFor="let species of treeSpeciesList" [value]="species">{{ species }}</option>
     </select>
 
-    <label for="height">{{ 'HEIGHT' | translate}}</label>
+    <label for="height">{{ 'HEIGHT' | translate }}</label>
     <input type="number" formControlName="height" min="1" required />
 
-    <label for="diameter">{{'DIAMETER' | translate }}:</label>
+    <label for="diameter">{{ 'DIAMETER' | translate }}:</label>
     <input type="number" formControlName="diameter" min="1" required />
 
-    <label for="count">{{ 'COUNT' | translate }}</label>
-    <input type="text" formControlName="count" min="1" required />
+    <label for="treeCount">{{ 'COUNT' | translate }}</label>
+    <input type="number" formControlName="treeCount" min="1" required />
 
-    <label for="location">{{ 'LOCATION' | translate }}</label>
-    <input type="text" formControlName="location" required />
+    <label for="locationName">{{ 'LOCATION' | translate }}</label>
+    <input type="text" formControlName="locationName" required />
 
     <div class="btn-group-horizontal">
-    <button type="button" class="btn-add" (click)="addTree()">{{ 'ADDTREE' | translate}}</button>
-<button type="submit" class="btn-save">{{ 'SAVE' | translate }}</button>
-</div>
-<div *ngIf="treesToSave.length > 0">
-  <h4>{{ 'READY' | translate }}</h4>
-  <ul>
-    <li *ngFor="let t of treesToSave">
-      {{ t.species }} – {{ t.height }}m, {{ t.diameter }}cm, {{ t.treeCount }} {{'TREE' | translate}}
-    </li>
-  </ul>
+      <button type="button" class="btn-add" (click)="addTree()">
+        {{ 'ADDTREE' | translate }}
+      </button>
+      <button type="submit" class="btn-save">
+        {{ 'SAVE' | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="treesToSave.length > 0">
+      <h4>{{ 'READY' | translate }}</h4>
+      <ul>
+        <li *ngFor="let t of treesToSave">
+          {{ t.species }} – {{ t.height }}m, {{ t.diameter }}cm, {{ t.treeCount }} {{ 'TREE' | translate }}
+        </li>
+      </ul>
+    </div>
+  </form>
 </div>
 
-
-</form>
-<div *ngIf="successMessage" class="success">{{ successMessage }}</div>
-<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-
-</div>

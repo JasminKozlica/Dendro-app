@@ -1,81 +1,68 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { TreeService } from 'src/app/services/tree.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DensityService } from '@app/services/density.service';
+import { TreeService } from '@app/services/tree.service';
+import { ForestDensity } from '@app/models/density.model';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgIf } from '@angular/common';
-import { count } from 'rxjs';
+import { count, Observable } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-density',
+  standalone:true,
+  imports:[CommonModule,ReactiveFormsModule,TranslateModule],
   templateUrl: './density.component.html',
-  styleUrls: ['./density.component.css'],
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NgIf,TranslateModule]
+  styleUrls: ['./density.component.css']
 })
-export class DensityComponent {
-  densityForm!: FormGroup;
-  treeSpecies: any[] = [];
-  successMessage: string = '';
-  errorMessage: string = '';
+export class DensityComponent implements OnInit {
+  densityForm: FormGroup;
+  treeSpeciesList: string[] = [];
+  treesToSave: ForestDensity[] = [];
+
+  successMessage = '';
+  errorMessage = '';
 
   constructor(
     private fb: FormBuilder,
-    private treeService: TreeService,
-    private http: HttpClient
+    private densityService: DensityService,
+    private treeService: TreeService
   ) {
     this.densityForm = this.fb.group({
       species: ['', Validators.required],
       height: ['', [Validators.required, Validators.min(1)]],
       diameter: ['', [Validators.required, Validators.min(1)]],
-      count: ['', [Validators.required, Validators.min(1)]],
-      location: ['', Validators.required]
+      treeCount: ['', [Validators.required, Validators.min(1)]],
+      locationName: ['', Validators.required]
     });
+  }
 
+  ngOnInit(): void {
     this.loadTopSpecies();
   }
 
-  loadTopSpecies() {
+  loadTopSpecies(): void {
     this.treeService.getTopSpecies().subscribe({
-      next: (data: any[]) => this.treeSpecies = data,
-      error: () => this.errorMessage = 'Greška pri učitavanju vrsta drveća.'
-    });
-  }
-
-  treesToSave: any[] = [];
-
-  addTree(){
-    if(this.densityForm.valid){
-      const formData = this.densityForm.value;
-      this.treesToSave.push({
-        species: formData.species,
-        height: formData.height,
-        diameter: formData.diameter,
-        treeCount: formData.count,
-        locationName: formData.location
-      });
-      this.densityForm.patchValue({ height:'', diameter:'', count:''})
-    }
-  }
-
-  onSubmit() {
-    if (this.treesToSave.length === 0 && this.densityForm.valid) {
-      this.addTree();
-    }
-  
-    this.http.post('http://localhost:8080/api/density/bulk', this.treesToSave).subscribe({
-      next: (res) => {
-        this.successMessage = "Podaci uspješno sačuvani!";
-        this.errorMessage = '';
-        this.treesToSave = [];
-        this.densityForm.reset();
+      next: (data) => {
+        this.treeSpeciesList = data.map(d => d.species); // adjust if needed
       },
       error: (err) => {
-        this.errorMessage = "Greška pri čuvanju podataka.";
-        this.successMessage = '';
+        console.error('Error loading species:', err);
       }
     });
   }
-  
+
+  addTree(): void {
+    if (this.densityForm.invalid) return;
+
+    const newTree: ForestDensity = this.densityForm.value;
+    this.treesToSave.push(newTree);
+    this.densityForm.reset();
+    this.successMessage = '';
+    this.errorMessage = '';
+  }
+
+ 
 }

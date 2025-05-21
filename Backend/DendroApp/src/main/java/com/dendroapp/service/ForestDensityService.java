@@ -5,7 +5,7 @@ import com.dendroapp.repository.ForestDensityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class ForestDensityService {
@@ -47,35 +47,27 @@ public class ForestDensityService {
         return repository.findBySpeciesContainingIgnoreCaseAndLocationNameContainingIgnoreCase(species, location);
     }
 
-    // New method to get an overview of forest density by location
-    public List<ForestDensity> getOverviewByLocation(String location) {
-        // You can modify this part based on how you want to aggregate the data
-        List<ForestDensity> densities = repository.findByLocationNameOrderByLocationName(location);
 
-        // Example: Aggregate data (tree count, volume) per location
-        return densities.stream()
-                .collect(Collectors.groupingBy(ForestDensity::getLocationName))
-                .values()
-                .stream()
-                .map(group -> {
-                    // Aggregate volume, tree count, etc.
-                    double totalVolume = group.stream().mapToDouble(ForestDensity::getVolume).sum();
-                    int totalTrees = group.stream().mapToInt(ForestDensity::getTreeCount).sum();
-                    String mostCommonSpecies = group.stream()
-                            .collect(Collectors.groupingBy(ForestDensity::getSpecies, Collectors.counting()))
-                            .entrySet()
-                            .stream()
-                            .max((entry1, entry2) -> Long.compare(entry1.getValue(), entry2.getValue()))
-                            .map(entry -> entry.getKey())
-                            .orElse("Unknown");
 
-                    ForestDensity summary = new ForestDensity();
-                    summary.setLocationName(location);
-                    summary.setTreeCount(totalTrees);
-                    summary.setVolume(totalVolume);
-                    summary.setSpecies(mostCommonSpecies);  // Most common species
-                    return summary;
-                })
-                .collect(Collectors.toList());
+    public ForestDensity updateDensity(Long id,ForestDensity updated){
+        return repository.findById(id)
+                        .map(existing -> {
+            existing.setSpecies(updated.getSpecies());
+            existing.setHeight(updated.getHeight());
+            existing.setDiameter(updated.getDiameter());
+            existing.setTreeCount(updated.getTreeCount());
+            existing.setLocationName(updated.getLocationName());
+            existing.setVolume(updated.getVolume());
+            return repository.save(existing);
+        })
+                .orElseThrow(() -> new RuntimeException("Density record not found with ID: " + id));    }
+
+
+    public void deleteInput(Long id){
+        if (repository.existsById(id)){
+            repository.deleteById(id);
+        } else {
+            throw new RuntimeException("Input record not found with ID: " + id);
+        }
     }
 }

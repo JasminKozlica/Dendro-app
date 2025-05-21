@@ -2,10 +2,10 @@ package com.dendroapp.controller;
 
 import com.dendroapp.model.ForestDensity;
 import com.dendroapp.service.ForestDensityService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/density")
@@ -14,6 +14,7 @@ import java.util.List;
 public class ForestDensityController {
 
     private final ForestDensityService densityService;
+
 
     public ForestDensityController(ForestDensityService densityService) {
         this.densityService = densityService;
@@ -34,15 +35,11 @@ public class ForestDensityController {
         return densityService.findById(id);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteDensity(@PathVariable Long id) {
-        densityService.deleteById(id);
-    }
-
     @PostMapping("/bulk")
     public List<ForestDensity> saveAll(@RequestBody List<ForestDensity> trees) {
         return densityService.saveAll(trees);
     }
+
     @GetMapping("/search")
     public List<ForestDensity> search(
             @RequestParam(required = false) String species,
@@ -58,4 +55,22 @@ public class ForestDensityController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ForestDensity> updateDensity(@PathVariable Long id, @RequestBody ForestDensity updated) {
+        try {
+            ForestDensity updatedDensity = densityService.updateDensity(id, updated);
+            return ResponseEntity.ok(updatedDensity);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDensity(@PathVariable Long id) {
+    try {
+        densityService.deleteInput(id);
+        return ResponseEntity.noContent().build();
+    } catch (RuntimeException e) {
+        return ResponseEntity.notFound().build();
+    }
+    }
 }
