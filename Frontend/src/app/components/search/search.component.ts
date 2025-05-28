@@ -23,6 +23,7 @@ export class SearchComponent implements OnInit {
   selectedLocation: string = '';
   totalVolume: number =0;
   editItem: any = null;
+  editItemId: number | null = null;
 
   constructor(private http: HttpClient , 
     private translate: TranslateService
@@ -85,8 +86,9 @@ export class SearchComponent implements OnInit {
       }
     );
   }
-  onEdit(item: any): void {
-  this.editItem = { ...item }; // kloniraj objekat za uređivanje
+  onEdit(item: any) {
+  this.editItem = { ...item }; 
+  this.editItemId = item.id;
 }
 
 onUpdate(): void {
@@ -97,6 +99,7 @@ onUpdate(): void {
         this.results[index] = updated;
       }
       this.editItem = null;
+      this.editItemId = null;
     },
     error: (err) => {
       console.error(this.translate.instant('update-error'), err);
@@ -104,11 +107,16 @@ onUpdate(): void {
     }
   });
 }
+
 onDelete(id: number): void {
   if (confirm(this.translate.instant('Delete-confirmation'))) {
     this.http.delete(`/api/density/${id}`).subscribe({
       next: () => {
         this.results = this.results.filter(item => item.id !== id);
+      if(this.editItemId === id){
+        this.editItemId = null;
+        this.editItemId = null;
+      }
       },
       error: (err) => {
         console.error(this.translate.instant('Delete-Runtime-Error'), err);

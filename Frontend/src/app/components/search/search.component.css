@@ -1,9 +1,17 @@
 /* Glavni container */
 .search-container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  max-width: 550px;
+  margin: 0 auto 30px auto;
+  padding: 20px;
   gap: 2rem;
-  padding: 1rem;
+  border: 1px solid #4CAF50;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-sizing:border-box;
 }
 
 /* Lijeva kolona – forma i rezultati */
@@ -12,6 +20,7 @@
   flex-direction: column;
   flex: 1 1 400px;
   max-width: 500px;
+  margin-bottom: 20px;
 }
 
 /* Desna kolona – lokacije i tabela */
@@ -60,6 +69,11 @@ button:hover {
   padding: 8px;
   border-radius: 5px;
   margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
 }
 
 /* Lokacije */
@@ -72,9 +86,9 @@ button:hover {
 }
 
 .locations ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  margin: 0;
+  
 }
 
 .locations li {
@@ -121,4 +135,46 @@ button:hover {
     flex-direction: column;
   }
 }
+.button-group{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left:10 rem;
+}
 
+
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.result-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%;
+}
+.button-group{
+  display: flex;
+  gap: 10px;
+}
+
+
+
+.update-form{
+  margin-top: 10px;
+  padding: 10px;
+  border-top: 1px dashed #ccc;
+}
+.update-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

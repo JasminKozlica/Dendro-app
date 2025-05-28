@@ -1,57 +1,66 @@
 <div class="search-container">
 
-  <!-- Forma za pretragu -->
+  <!-- Search Form Section -->
   <div class="search-form">
-    <h2>{{'SRC'|translate}}</h2>
+    <h2>{{ 'SRC' | translate }}</h2>
     <form (ngSubmit)="onSearch()">
-      <label for="species">{{'SPECIES'|translate}}</label>
+      <label for="species">{{ 'SPECIES' | translate }}</label>
       <input type="text" [(ngModel)]="searchSpecies" name="species" />
 
-      <label for="location">{{'LOCATION' | translate }}</label>
+      <label for="location">{{ 'LOCATION' | translate }}</label>
       <input type="text" [(ngModel)]="searchLocation" name="location" />
 
-      <button type="submit">{{ 'SRC-S'|translate}}</button>
+      <button type="submit">{{ 'SRC-S' | translate }}</button>
     </form>
 
-    <!-- Rezultati pretrage -->
-    <div *ngIf="results.length > 0">
-      <h3>{{'RESULT' | translate}}</h3>
+    <!-- Search Results Section -->
+    <div *ngIf="results.length > 0" class="results">
+      <h3>{{ 'RESULT' | translate }}</h3>
       <ul>
-        <li *ngFor="let r of results">
-          {{ r.species }} - {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} {{'TREE'|translate}}, {{ r.locationName }}
-          <button (click)="onDelete(r.id)">{{"Delete"|translate }}</button>
-          <button (click)="onEdit(r)">{{"Change" | translate }}</button>
-        </li>
-        
-  </ul>
-    </div>
-    
+        <li *ngFor="let r of results" class="result-item">
+          <div class="result-details">
+            <span>
+              {{ r.locationName }}, {{ r.species }} - {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} {{ 'TREE' | translate }}
+            </span>
+            <div class="button-group">
+              <button (click)="onDelete(r.id)">{{ 'Delete' | translate }}</button>
+              <button (click)="onEdit(r)">{{ 'Change' | translate }}</button>
+            </div>
+          </div>
 
+          <!-- Inline Update Form -->
+          <div *ngIf="editItemId === r.id" class="update-form">
+            <h4>{{ 'Change-Entry' | translate }}</h4>
+            <form (ngSubmit)="onUpdate()">
+              <label>{{ 'SPECIES' | translate }}:</label>
+              <input [(ngModel)]="editItem.species" name="speciesEdit" required />
+
+              <label>{{ 'HEIGHT' | translate }}:</label>
+              <input type="number" [(ngModel)]="editItem.height" name="heightEdit" required />
+
+              <label>{{ 'DIAMETER' | translate }}:</label>
+              <input type="number" [(ngModel)]="editItem.diameter" name="diameterEdit" required />
+
+              <label>{{ 'COUNT' | translate }}</label>
+              <input type="number" [(ngModel)]="editItem.treeCount" name="treeCountEdit" required />
+
+              <label>{{ 'LOCATION' | translate }}</label>
+              <input [(ngModel)]="editItem.locationName" name="locationEdit" required />
+
+              <div class="button-group">
+                <button type="submit">{{ 'Save' | translate }}</button>
+                <button type="button" (click)="editItemId = null">{{ 'Cancel' | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- No Results Message -->
     <div *ngIf="results.length === 0 && searched">
-      <p>{{"DATA" | translate}}</p>
+      <p>{{ 'DATA' | translate }}</p>
     </div>
   </div>
-  <div *ngIf="editItem">
-  <h3>{{"Change-Entry"|translate}}</h3>
-  <form (ngSubmit)="onUpdate()">
-    <label>{{"SPECIES"|translate}}:</label>
-    <input [(ngModel)]="editItem.species" name="speciesEdit" required />
 
-    <label>{{"HEIGHT"|translate}}:</label>
-    <input type="number" [(ngModel)]="editItem.height" name="heightEdit" required />
-
-    <label>{{"DIAMETER"|translate}}:</label>
-    <input type="number" [(ngModel)]="editItem.diameter" name="diameterEdit" required />
-
-    <label>{{"COUNT"|translate}}</label>
-    <input type="number" [(ngModel)]="editItem.treeCount" name="treeCountEdit" required />
-
-    <label>{{ "LOCATION" | translate }}</label>
-    <input [(ngModel)]="editItem.locationName" name="locationEdit" required />
-
-    <button type="submit">{{"Save"|translate}}</button>
-    <button type="button" (click)="editItem = null">{{"Cancel"| translate}}</button>
-  </form>
 </div>
-
-  
