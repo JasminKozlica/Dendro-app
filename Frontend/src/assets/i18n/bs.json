@@ -76,7 +76,23 @@
   "Change":"Promjeni",
   "Save":"Sacuvaj",
   "Cancel":"Otkazi",
-  "Change-Entry":"Promjeni unos"
+  "Change-Entry":"Promjeni unos",
+
+  "Login":"Login",
+  "NoAcc":"Nemas racuna?",
+  "register":"Napravi racun",
+  "AHA":"Vec posjedujes racun?",
+  "username":"Korisnicko ime",
+  "name":"Ime",
+  "lastname":"Prezime",
+  "password":"Sifra",
+  
+  "user":"Korisnik",
+  "update":"Uredi Profil",
+  "CU":"Promjeni korisnika",
+  "logout":"Odjavi se"
+
+
 
 
 

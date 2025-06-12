@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import{ RouterModule } from '@angular/router';
+import{ Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '@app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +14,21 @@ import { TranslateService } from '@ngx-translate/core';
 
 })
 export class NavbarComponent{
-  constructor(private translate: TranslateService){}
+
+  showDropdown = false;
+  
+  constructor(private translate: TranslateService,private auth:AuthService,private router:Router){}
 
   switchLanguage(lang: string){
     this.translate.use(lang);
+  }
+
+  logout(){
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+
+  changeUser(){
+    this.logout();
   }
 }

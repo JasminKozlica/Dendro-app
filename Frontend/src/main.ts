@@ -9,7 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
-import { JwtInterceptor } from './app/auth/jwt.interceptor'; 
+import { AuthInterceptor } from '@app/auth.interceptor'; 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -24,7 +24,7 @@ bootstrapApplication(AppComponent, {
     //  Register class-based JWT interceptor
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
+      useClass: AuthInterceptor,
       multi: true
     },
 

@@ -4,6 +4,7 @@ import { DensityComponent } from '../density/density.component';
 import { TreeInputComponent } from '../tree-input/tree-input.component';
 import { LocationOverviewComponent } from '../location-overview.component/location-overview.component';
 import { authGuard } from '@app/auth/auth.guard';
+import { ProfileComponent } from '@app/profile/profile.component';
 
 
 export const appRoutes: Routes = [
@@ -24,5 +25,6 @@ export const appRoutes: Routes = [
   { path: 'density', component: DensityComponent },
   { path: 'tree-input', component: TreeInputComponent },
   {path:'overview',component: LocationOverviewComponent},
-  { path: '**', redirectTo: 'search' } // fallback za nepoznate rute
+  {path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
+  { path: '**', redirectTo: 'login' } // fallback za nepoznate rute
 ];

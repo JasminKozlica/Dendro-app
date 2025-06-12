@@ -12,5 +12,13 @@
         <li (click)="switchLanguage('de')">Deutsch</li>
       </ul>
     </div>
+    <div class = "user-menu" (mouseenter)="showDropdown  = true" (mouseleave)="showDropdown = false">
+      <span class="username">👤 {{'user'|translate}} ▼</span>
+      <ul class = "dropdown"  *ngIf="showDropdown">
+          <li><a routerLink="/profile">{{'update'|translate}}</a></li>
+          <li><a (click)="changeUser()">{{'CU'|translate}}</a></li>
+          <li><a (click)="logout()">{{'logout' | translate}}</a></li>
+      </ul>
+    </div>
 </nav>
 <router-outlet></router-outlet>

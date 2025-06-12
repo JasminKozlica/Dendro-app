@@ -16,6 +16,11 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.auth.getToken();
 
+    if(request.url.includes('/auth/login') || request.url.includes('/auth/register')){
+      return next.handle(request);
+    }
+
+
     if (token) {
       request = request.clone({
         setHeaders: {
