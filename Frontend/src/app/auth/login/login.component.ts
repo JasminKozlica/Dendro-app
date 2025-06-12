@@ -17,13 +17,18 @@ export class LoginComponent {
 
   constructor(private auth: AuthService, private router: Router) {}
 
+ 
+
   onLogin(): void {
+    localStorage.removeItem('token');
     this.auth.login({ username: this.username, password: this.password }).subscribe({
       next: res => {
         this.auth.saveToken(res.token);
         this.router.navigate(['/']); // or to protected route
       },
-      error: err => alert('Login failed')
+      error: err => {
+        localStorage.removeItem('token');
+        alert('Login failed') }
     });
   }
 }
