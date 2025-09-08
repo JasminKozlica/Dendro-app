@@ -40,52 +40,57 @@ export class SearchComponent implements OnInit {
 
   fetchLocations(){
     this.http.get<any[]>('/api/density/search').subscribe(data => {
-      const allLocations = data.map(d => d.location.name);  // ➜ samo ime lokacije
+      const allLocations = data
+      .filter(d => d.location && d.location.name)
+      .map(d => d.location.name);  
       this.locations = Array.from(new Set(allLocations)); 
     });
   }
   fetchByLocation(location: string){
-    
-    const params = new HttpParams().set('location', location);
-    this.selectedLocation = location;
-    this.http.get<any[]>(`/api/density/search` , { params }).subscribe(data => {
-      this.densities = data;
-      this.totalVolume = this.calculateTotalVolume(data);
-    });
-  }
+  const params = new HttpParams().set('location', location);
+  this.selectedLocation = location;
+  this.http.get<any[]>('/api/density/search', { params }).subscribe(data => {
+    this.densities = data.map(d => ({
+      ...d,
+      createdByName: d.createdByName || 'N/A',
+      createdAt: d.createdAt ? new Date(d.createdAt) : null
+    }));
+    this.totalVolume = this.calculateTotalVolume(this.densities);
+  });
+}
 
   
 
   calculateTotalVolume(data: any[]): number {
     return data.reduce((total, d) => {
+      if (!d.diameter || !d.heigth || !d.treeCount) return total;
       const radius = (d.diameter / 100) / 2;
       const volume = Math.PI * Math.pow(radius, 2) * d.height * d.treeCount;
       return total + volume;
     }, 0);
   }
+onSearch() {
+  let params = new HttpParams();
+  if (this.searchSpecies) params = params.set('species', this.searchSpecies);
+  if (this.searchLocation) params = params.set('location', this.searchLocation);
 
-  onSearch() {
-    let params = new HttpParams();
-
-    if (this.searchSpecies) {
-      params = params.set('species', this.searchSpecies);
+  this.http.get<any[]>('/api/density/search', { params }).subscribe(
+    data => {
+      // mapiramo DTO polja
+      this.results = data.map(d => ({
+        ...d,
+        createdByName: d.createdByName || 'N/A',
+        createdAt: d.createdAt ? new Date(d.createdAt) : null
+      }));
+      this.searched = true;
+    },
+    error => {
+      console.error(this.translate.instant('search-error'), error);
+      this.results = [];
+      this.searched = true;
     }
-    if (this.searchLocation) {
-      params = params.set('location', this.searchLocation);
-    }
-
-    this.http.get<any[]>('/api/density/search', { params }).subscribe(
-      data => {
-        this.results = data;
-        this.searched = true;
-      },
-      error => {
-        console.error(this.translate.instant('search-error'), error);
-        this.results = [];
-        this.searched = true;
-      }
-    );
-  }
+  );
+}
   onEdit(item: any) {
   this.editItem = { ...item }; 
   this.editItemId = item.id;

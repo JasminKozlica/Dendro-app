@@ -41,4 +41,13 @@ showNavbar(): boolean {
     const currentUrl = this.router.url || '';
     return !['/login', '/register'].includes(currentUrl) && !!this.auth.getToken();
   }
+
+   ngOnInit(): void {
+   const token = this.auth.getToken();
+   const currentUrl = this.router.url;
+
+   if (token && currentUrl !== '/login') {
+    this.router.navigate(['/search']);
+   }
+  }
 }

@@ -15,26 +15,35 @@ import { TranslateModule } from '@ngx-translate/core';
 export class LoginComponent {
   username = '';
   password = '';
-
+  errorMessage: string | null = null;
   constructor(private auth: AuthService, private router: Router) {}
 
  
 
   onLogin(): void {
+    
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+
     this.auth.login({ username: this.username, password: this.password }).subscribe({
       next: res => {
-        this.auth.saveToken(res.token);
-        this.router.navigate(['/search']); // or to protected route
+        this.auth.saveToken(res.accessToken);
+        localStorage.setItem('refreshToken' , res.refreshToken);
+
+        this.errorMessage = null;
+        this.router.navigate(['/search']);
       },
       error: err => {
-        localStorage.removeItem('token');
-        alert('Login failed') }
+        this.errorMessage = 'Login failed. Please check your username and password. ';
+        console.error('Login error: ',err); 
+      }
     });
   }
-  ngOnInit(): void {
-    if(this.auth.getToken()){
-      this.router.navigate(['/search']);
-    }
-  }
+
+  getToken(): string | null {
+  return localStorage.getItem('token');
+}
+
+
+ 
 }

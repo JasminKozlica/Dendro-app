@@ -1,9 +1,9 @@
 package com.dendroapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.dendroapp.entity.User;
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class ForestDensity {
@@ -17,6 +17,11 @@ public class ForestDensity {
     private int treeCount;
     private String locationName;
     private double volume;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "created_by_id")
+    private User createdBy;
+    private LocalDateTime createdAt;
 
     public Long getId(){ return id; }
     public void setId(Long id) { this.id = id; }
@@ -43,4 +48,21 @@ public class ForestDensity {
     public void setVolume(double volume) {
         this.volume = volume;
     }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
 }

@@ -5,11 +5,11 @@ import com.dendroapp.repository.UserRepository;
 import com.dendroapp.model.*;
 import com.dendroapp.jwt.JwtUtill;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -18,17 +18,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtill jwtUtil;
     private final AuthenticationManager authManager;
-
-    public AuthResponse register(RegisterRequest request) {
-        User user = User.builder()
-                .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role("USER")
-                .build();
-        userRepository.save(user);
-        String token = jwtUtil.generateToken(user);
-        return new AuthResponse(token);
-    }
+    
 
     public AuthResponse authenticate(AuthRequest request) {
         authManager.authenticate(
@@ -37,8 +27,11 @@ public class AuthService {
         );
 
         User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow();
-        String token = jwtUtil.generateToken(user);
-        return new AuthResponse(token);
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        String accessToken = jwtUtil.generateAccessToken(user);
+        String refreshToken = jwtUtil.generateRefreshToken(user);
+
+        return new AuthResponse(accessToken, refreshToken);
     }
 }

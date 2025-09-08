@@ -2,6 +2,8 @@
     <a routerLink="/search" routerLinkActive="active">{{ 'DATABASE' | translate }}</a>
     <a routerLink="/density" routerLinkActive="active">{{ 'DBI'| translate }}</a>
     <a routerLink="/tree-input" routerLinkActive="active">{{ 'CALC' | translate }}</a>
+    <a *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="active">Admin</a>
+
     <div class="language-dropdown">
       <div class="language-selected">
         🌐 Language
@@ -13,7 +15,7 @@
       </ul>
     </div>
     <div class = "user-menu" (mouseenter)="showDropdown  = true" (mouseleave)="showDropdown = false">
-      <span class="username">👤 {{'user'|translate}} ▼</span>
+      <span class="username">👤 {{ username || 'user'|translate}} ▼</span>
       <ul class = "dropdown"  *ngIf="showDropdown">
           <li><a routerLink="/profile">{{'update'|translate}}</a></li>
           <li><a (click)="changeUser()">{{'CU'|translate}}</a></li>
@@ -21,4 +23,3 @@
       </ul>
     </div>
 </nav>
-<router-outlet></router-outlet>

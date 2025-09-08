@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tree } from '@models/tree.model';
 import { CalculationService } from '../../services/calculation.service';
-import { TreeService } from 'src/app/services/tree.service';
+import { TreeService } from '@app/services/tree.service';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

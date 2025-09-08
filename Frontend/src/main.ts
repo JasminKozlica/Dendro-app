@@ -21,15 +21,12 @@ bootstrapApplication(AppComponent, {
     //  App routes
     provideRouter(appRoutes),
 
-    //  Register class-based JWT interceptor
+    provideHttpClient(withInterceptorsFromDi()),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     },
-
-    //  Enable DI-compatible interceptors in HttpClient
-    provideHttpClient(withInterceptorsFromDi()),
 
     // Translation loader setup
     importProvidersFrom(
