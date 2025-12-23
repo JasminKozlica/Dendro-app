@@ -70,6 +70,19 @@
   "Change": "Ändern",
   "Save": "Speichern",
   "Cancel": "Abbrechen",
-  "Change-Entry": "Eintrag ändern"
+  "Change-Entry": "Eintrag ändern",
+  
+  "Login": "Anmelden",
+  "NoAcc": "Kein Konto?",
+  "register": "Konto erstellen",
+  "AHA": "Du hast bereits ein Konto?",
+  "username": "Benutzername",
+  "name": "Vorname",
+  "lastname": "Nachname",
+  "password": "Passwort",
+  "user": "Benutzer",
+  "update": "Profil bearbeiten",
+  "CU": "Benutzer wechseln",
+  "logout": "Abmelden"
 }
   

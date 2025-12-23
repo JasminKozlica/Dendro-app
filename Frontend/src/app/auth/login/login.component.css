@@ -30,3 +30,40 @@ button {
 button:hover {
     background-color: #004999;
 }
+
+a{
+    color: #0066cc;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+a:hover {
+    color:#004999;
+}
+.register-section {
+    margin-top:15px;
+    text-align:center;
+}
+
+.register-section button {
+    background-color: #ccc;
+    color: black;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.register-section button:hover {
+    background-color:#bbb;
+}
+.auth-container {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  background: rgba(245, 245, 245, 0.85); /* poluprozirno */
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+}

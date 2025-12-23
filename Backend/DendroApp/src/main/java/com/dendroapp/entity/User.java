@@ -1,10 +1,7 @@
 package com.dendroapp.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -12,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
+
 public class User {
 
     @Id
@@ -19,6 +17,8 @@ public class User {
     private Long id;
 
     private String username;
+    private String firstname;
+    private String lastname;
     private String password;
     private String role;
 }

@@ -22,6 +22,11 @@
             <span>
               {{ r.locationName }}, {{ r.species }} - {{ r.height }}m, {{ r.diameter }}cm, {{ r.treeCount }} {{ 'TREE' | translate }}
             </span>
+            <small class="created-info">
+              {{ 'Created by' | translate }}: {{ r.createdByName || 'N/A' }} | 
+                {{ r.createdAt | date:'short' }}
+            </small>
+
             <div class="button-group">
               <button (click)="onDelete(r.id)">{{ 'Delete' | translate }}</button>
               <button (click)="onEdit(r)">{{ 'Change' | translate }}</button>

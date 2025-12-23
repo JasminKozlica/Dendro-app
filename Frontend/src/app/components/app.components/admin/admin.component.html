@@ -1,0 +1,102 @@
+<div class="admin-panel">
+
+  <h2>Admin Panel</h2>
+
+  <!-- Create User -->
+  <div class="form-box">
+    <h3>Create User</h3>
+    <form #userForm="ngForm" (ngSubmit)="createUser()">
+      <label>Username:</label>
+      <input class="form-control" type="text" [(ngModel)]="newUser.username" name="username" required minlength="3">
+
+      <label>Password:</label>
+      <input class="form-control"
+       type="password" 
+       [(ngModel)]="newUser.password" 
+       name="password"
+       #passwordCtrl="ngModel"
+        required minlength="6">
+       <div *ngIf="passwordCtrl.touched && passwordCtrl?.errors">
+        <small class="error-msg" *ngIf="passwordCtrl?.errors?.['required']">
+          Password is required
+        </small>
+        <small class="error-msg" *ngIf="passwordCtrl?.errors?.['minlength']">
+    Password must be at least 6 characters long
+  </small>
+       </div> 
+
+       <p *ngIf="message && message.startsWith('Error:')" class="error-msg">
+        {{message}}
+       </p>
+
+     <label>First Name:</label>
+    <input class="form-control" 
+           type="text" 
+           [(ngModel)]="newUser.firstname" 
+           name="firstname" 
+           required minlength="2">
+
+    <label>Last Name:</label>
+    <input class="form-control" 
+           type="text" 
+           [(ngModel)]="newUser.lastname" 
+           name="lastname" 
+           required minlength="2">
+
+    <div class="btn-group">
+      <button class="btn-submit" 
+              type="submit" 
+              [disabled]="!userForm.valid">
+        Create User
+      </button>
+    </div>
+  </form>
+
+  <p *ngIf="message" class="info-msg">{{ message }}</p>
+</div>
+
+  <!-- User List -->
+  <div class="user-list">
+    <h3 class="allUsers"> All Users</h3>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td>{{ u.id }}</td>
+          <td>{{ u.username }}</td>
+          <td>{{ u.role }}</td>
+          <td>
+            <button class="btn-edit" (click)="startEdit(u)">Edit</button>
+            <button class="btn-delete" (click)="deleteUser(u.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit User -->
+  <div class="modal-backdrop" *ngIf="showEditModal && editUser">
+  <div class="modal">
+    <h3>Edit User</h3>
+    <label>Username:</label>
+    <input [(ngModel)]="editUser.username" placeholder="Username">
+
+    <label>Password:</label>
+    <input [(ngModel)]="editUser.password" type="password" placeholder="New Password (optional)">
+
+    <div class="btn-group">
+      <button class="btn-save" (click)="updateUser()">Save</button>
+      <button class="btn-cancel" (click)="closeEditModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+</div>
+ 

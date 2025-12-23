@@ -1,0 +1,30 @@
+<div class="profile-container">
+    <h2>Uredi profil</h2>
+     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="username">{{'username'| translate}} </label>
+            <input id="username" formControlName="username"/>
+        </div>
+
+        <div>
+            <label for="firstName">{{'name'|translate }}:</label>
+            <input id="firstName" formControlName="firstName" />
+        
+        </div>
+
+        <div>
+            <label for="lastName">{{'lastname'|translate}}:</label>
+            <input id="lastName" formControlName="lastName" />
+        
+        </div>
+
+        <div>
+            <label for="password">{{'password'| translate}}:</label>
+            <input id="password" type="password" formControlName="password" />
+        
+        </div>
+
+        <button type="submit" [disabled]="profileForm.invalid">{{'Save'|translate }}</button>
+
+    </form>
+</div>

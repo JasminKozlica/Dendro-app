@@ -178,3 +178,9 @@ button:hover {
   flex-direction: column;
   gap: 8px;
 }
+.created-info {
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 4px;
+  display: block;
+}

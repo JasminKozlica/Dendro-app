@@ -69,6 +69,19 @@
   "Change": "Change",
   "Save": "Save",
   "Cancel": "Cancel",
-  "Change-Entry": "Change entry"
+  "Change-Entry": "Change entry",
+  
+  "Login": "Login",
+  "NoAcc": "Don't have an account?",
+  "register": "Create account",
+  "AHA": "Already have an account?",
+  "username": "Username",
+  "name": "First name",
+  "lastname": "Last name",
+  "password": "Password",
+  "user": "User",
+  "update": "Edit Profile",
+  "CU": "Switch user",
+  "logout": "Logout"
   }
   

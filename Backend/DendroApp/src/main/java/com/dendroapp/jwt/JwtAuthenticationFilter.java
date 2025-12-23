@@ -20,14 +20,23 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUtill jwtUtil;
     private final UserDetailsServiceImpl userDetailsService;
 
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain)
        throws ServletException, IOException {
+
+        //Preskoci javne endpointove
+        String path = request.getServletPath();
+        if (path.equals("/api/auth/login")){
+            filterChain.doFilter(request,response);
+            return;
+        }
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String username;
+
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
@@ -35,6 +44,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         jwt = authHeader.substring(7);
         username = jwtUtil.extractUsername(jwt);
+
+        System.out.println("Authorization header: " + authHeader);
+        System.out.println("Token: " + jwt);
+        System.out.println("User authenticated: " + username);
+
 
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
             var userDetails = userDetailsService.loadUserByUsername(username);
@@ -50,4 +64,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request,response);
     }
+
 }
