@@ -45,7 +45,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers("/api/auth/login", "/h2-console/**").permitAll()
+                        .requestMatchers("/api/auth/login").permitAll()
 
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         // ➤ sve ostalo mora biti autentifikovano (USER ili ADMIN)
